@@ -23,7 +23,7 @@ app.get('/',(req,res)=>{
     res.render('homepage');
 })
 
-server.listen(process.env.PORT,'https://dbcentre.herokuapp.com/',(err)=>{
+app.listen(process.env.PORT,(err)=>{
     if(err)
     {
         console.log('There is an error');
