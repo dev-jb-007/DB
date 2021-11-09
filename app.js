@@ -3,6 +3,7 @@ const path=require('path');
 const http=require('http');
 const ejs=require('ejs');
 const app=express();
+const server=http.createServer(app);
 require('./config/mongoose');
 
 //middleswares
@@ -22,7 +23,7 @@ app.get('/',(req,res)=>{
     res.render('homepage');
 })
 
-app.listen(proces.env.PORT,(err)=>{
+server.listen(proces.env.PORT,'https://dbcentre.herokuapp.com/',(err)=>{
     if(err)
     {
         console.log('There is an error');
