@@ -1,0 +1,28 @@
+{
+  "name": "db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js -e ejs,js,css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dev-jb-007/DB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dev-jb-007/DB/issues"
+  },
+  "homepage": "https://github.com/dev-jb-007/DB#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.12"
+  }
+}
