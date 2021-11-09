@@ -22,7 +22,7 @@ app.get('/',(req,res)=>{
     res.render('homepage');
 })
 
-app.listen(3000,(err)=>{
+app.listen(proces.env.PORT,(err)=>{
     if(err)
     {
         console.log('There is an error');
