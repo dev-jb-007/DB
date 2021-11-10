@@ -1,7 +1,6 @@
 const mongoose=require('mongoose');
 require('dotenv').config();
-const url='mongodb+srv://DB:DevBhavik@cluster0.vrzx4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-mongoose.connect(url,{
+mongoose.connect(process.env.MONGODB,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
 }).then(()=>{
