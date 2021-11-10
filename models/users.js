@@ -19,7 +19,21 @@ const userSchema=new Schema({
     },
     isVerify:{
         type:Boolean
-    }
+    },
+    tokens:[{
+        token:{
+            type:String,
+            required:true
+        }
+    }]
 })
-
+userSchema.methods.createAuthToken=async function(){
+    const user=this;
+    const token=jwt.sign({_id:user._id.toString()},process.env.JWT_SECRET);
+    user.tokens=user.tokens.concat({token:token});//.concat combines two or more array
+    // console.log(user);
+    console.log(token);
+    await user.save();
+    return token;
+}
 module.exports=mongoose.model('user',userSchema);

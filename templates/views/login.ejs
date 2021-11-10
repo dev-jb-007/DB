@@ -16,14 +16,14 @@
       </div>
       <div class="login">
         <div class="login_title">
-          <span>SignUp To Your Account</span>
+          <span>Login to your account</span>
         </div>
         <div class="login_fields">
           <div class="login_fields__user">
             <div class="icon">
               <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png"/>
             </div>
-            <input  id="email" placeholder="Email" type="text">
+            <input placeholder="Username" type="text" id="email">
               <div class="validation">
                 <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png"/>
               </div>
@@ -33,42 +33,15 @@
             <div class="icon">
               <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/lock_icon_copy.png"/>
             </div>
-            <input  id="password" placeholder="Password" type="password"></input>
+            <input placeholder="Password" type="password" id="password"></input>
             <div class="validation">
               <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png"/>
             </div>
           </div>
-          <div class="signup_fields__password">
-            <div class="icon">
-              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/lock_icon_copy.png"/>
-            </div>
-            <input  id="age" placeholder="Age" type="number"></input>
-          </div>
-          <div class="login_fields__user">
-            <div class="icon">
-              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png"/>
-            </div>
-            <input  id="yourname" placeholder="Your Name" type="text">
-              <div class="validation">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png"/>
-              </div>
-            </input>
-          </div>
-          <!-- <div class="col_half">
-            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-              <input type="text" name="name" placeholder="Username" />
-            </div>
-          </div> -->
-          <div class="input_field radio_option">
-            <input type="radio" name="radiogroup1" id="rd1">
-            <label for="rd1">Male</label>
-            <input type="radio" name="radiogroup1" id="rd2">
-            <label for="rd2">Female</label>
-          </div>
           <div class="login_fields__submit">
-            <input onclick="signup()" type="submit" value="SignUp"></input>
+            <input type="submit" onclick="login()" value="Log In"></input>
             <div class="forgot">
-              <a href="/login">Log In</a>
+              <a href="/signup">SignUp</a>
             </div>
           </div>
         </div>
@@ -81,5 +54,5 @@
         </div>
       </div>
 </body>
-<script src="/javascript/signup.js"></script>
+<script src="/javascript/login.js"></script>
 </html>
