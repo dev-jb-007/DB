@@ -6,11 +6,14 @@ async function logout(){
         }
     })
     let answer=await buffer.json();
+    console.log('Hi');
     if(answer.status==='done')
     {
         console.log('done');
+        window.location.href='/';
     }
     else{
         console.log('fail');
+        alert('error');
     }
 }

@@ -14,6 +14,7 @@ async function login(){
     if(result.status==='done')
     {
         console.log('Done');
+        window.location.href='/user/dashboard';
     }
     else{
         console.log('Error');

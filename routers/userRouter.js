@@ -27,7 +27,9 @@ router.route('/signup')
 router.route('/dashboard')
     .get(isAuth,async (req,res,next)=>{
         try{
-            res.render('dashboard');
+            let user=req.user;
+            console.log(user);
+            res.render('dashboard',user);
         }
         catch(err)
         {

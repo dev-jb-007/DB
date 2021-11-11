@@ -32,7 +32,6 @@ userSchema.methods.createAuthToken=async function(){
     const token=jwt.sign({_id:user._id.toString()},process.env.JWT_SECRET);
     user.tokens=user.tokens.concat({token:token});//.concat combines two or more array
     // console.log(user);
-    console.log(token);
     await user.save();
     return token;
 }
