@@ -35,6 +35,9 @@ app.get('/login',(req,res)=>{
 app.get('/admin',(req,res)=>{
     res.render('admin')
 })
+app.get('/profile',(req,res)=>{
+    res.render('profile');
+})
 app.use('/user',userRouter);
 app.use('/docter',adminRouter);
 app.use(function (err, req, res, next) {
