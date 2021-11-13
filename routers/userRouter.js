@@ -3,8 +3,10 @@ const router=express.Router();
 const User=require('../models/users');
 const schedule=require('node-schedule');
 const Set=require('../models/sets');
+const setName=require('../models/setNames');
 const cookieParser=require('cookie-parser');
 const isAuth=require('../config/isAuth');
+const filter=require('../config/filter');
 router.use(cookieParser());
 router.use(express.json());
 router.use(express.urlencoded({extended:true}));
@@ -52,11 +54,29 @@ router.route('/dashboard/profile')
 router.route('/update')
     .post(isAuth,async (req,res,next)=>{
         try{
-            const user=await User.findById(req.user._id);
-            let newUser=await User.findOneAndUpdate(user,req.body,{new:true});
-            console.log(newUser);
+            let newUser=await User.findByIdAndUpdate(req.user._id,req.body,{new:true});
+            // console.log(newUser);
+            await newUser.save();
             res.send({status:'Done'});
 
+        }
+        catch(err)
+        {
+            next(err);
+        }
+    })
+router.route('/info')
+    .get(isAuth,async (req,res,next)=>{
+        try{
+            let user=await User.findById(req.user._id).populate({
+                path:'activities',
+                populate:{path:'activity',populate:'docter'}
+            });
+            user.activities.forEach(element=>{
+                filter(element.activity.docter);
+            })
+            let set=await Set.findById(user.set._id);
+            res.send({user,set});
         }
         catch(err)
         {
@@ -67,9 +87,10 @@ router.route('/dashboard/form')
     .get(isAuth,async (req,res,next)=>{
         try{
             let arr=new Array;
+            let x=await setName.find({});
             arr=await Set.find({},'name');
             // console.log(arr);
-            res.render('form',{array:arr,name:req.user.name});
+            res.render('form',{array:arr,name:req.user.name,x});
         }
         catch(err)
         {
@@ -102,18 +123,10 @@ router.route('/login')
     .post(async (req,res,next)=>{
         try{
             const user=req.body;
-            // console.log(user);
             const found=await User.findOne({email:user.email,password:user.password});
-            // console.log(found);
             if(found)
             {
-                // console.log('Hello');
                 let x=1;
-                update=schedule.scheduleJob('job-1','*/10000000 * * * * *',async ()=>{
-                    found.name='Bhavik'+x++;
-                    await found.save();
-                    console.log('Run');
-                });
                 let token= await found.createAuthToken();
                 res.cookie('jwt',token,{
                     expires:new Date(Date.now()+5000000000),

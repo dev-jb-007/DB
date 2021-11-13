@@ -101,10 +101,11 @@
                         <label>Sample Multi Data Select Box</label>
                         <br/><br/>
                           <select name="" multiple id="addiction">
-                              <option>Top Level</option>
-                              <option>Senior Level</option>
-                              <option>Mid Level</option>
-                              <option>Entry Level</option>
+                  
+                              <% x.forEach(item=>{ %>
+                                <option><%= item.name %></option>
+                              <% }) %>
+                          
                           </select>
                       </div>
                     <div class="slider">
