@@ -20,6 +20,29 @@ const userSchema=new Schema({
     isVerify:{
         type:Boolean
     },
+    isDocter:{
+        type:Boolean
+    },
+    set:{
+        set:{
+            type:mongoose.Types.ObjectId,
+            ref:'set'
+        },
+    },
+    activities:[
+        {
+            activity:{
+                type:mongoose.Types.ObjectId,
+                ref:'activity'
+            },
+            progress:{
+                type:Number
+            },
+            remainder:{
+                type:Date
+            }
+        } 
+    ],
     tokens:[{
         token:{
             type:String,

@@ -1,12 +1,13 @@
 const express=require('express');
 const router=express.Router();
 const User=require('../models/users');
+const schedule=require('node-schedule');
 const cookieParser=require('cookie-parser');
 const isAuth=require('../config/isAuth');
 router.use(cookieParser());
 router.use(express.json());
 router.use(express.urlencoded({extended:true}));
-
+let update;
 router.route('/signup')
     .post(async (req,res,next)=>{
         try{
@@ -28,7 +29,7 @@ router.route('/dashboard')
     .get(isAuth,async (req,res,next)=>{
         try{
             let user=req.user;
-            console.log(user);
+            // console.log(user);
             res.render('dashboard',user);
         }
         catch(err)
@@ -47,6 +48,12 @@ router.route('/login')
             if(found)
             {
                 // console.log('Hello');
+                let x=1;
+                update=schedule.scheduleJob('job-1','*/1 * * * *',async ()=>{
+                    found.name='Bhavik'+x++;
+                    await found.save();
+                    console.log('Run');
+                });
                 let token= await found.createAuthToken();
                 res.cookie('jwt',token,{
                     expires:new Date(Date.now()+5000000000),
@@ -70,6 +77,11 @@ router.route('/signout')
             req.user.tokens = req.user.tokens.filter((token) => {
                 return token.token !== req.token;
             });
+            let z=schedule.scheduledJobs['job-1'];
+            if(z)
+            {
+                z.cancel();
+            }
             await req.user.save();
             res.send({status:"done"});
         }
@@ -78,4 +90,4 @@ router.route('/signout')
             next(err);
         }
     })
-    module.exports=router;
+module.exports=router;

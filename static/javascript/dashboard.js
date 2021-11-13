@@ -7,6 +7,7 @@ async function logout(){
     })
     let answer=await buffer.json();
     console.log('Hi');
+    console.log(answer);
     if(answer.status==='done')
     {
         console.log('done');

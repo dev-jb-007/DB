@@ -3,9 +3,12 @@ const path=require('path');
 const http=require('http');
 const ejs=require('ejs');
 const app=express();
+require('./config/mongoose');
+const isAuth=require('./config/isAuth');
 const server=http.createServer(app);
 const userRouter=require('./routers/userRouter');
-require('./config/mongoose');
+const adminRouter=require('./routers/adminRouter');
+
 // Dev
 //middleswares
 app.use(express.json());
@@ -29,9 +32,13 @@ app.get('/signup',(req,res)=>{
 app.get('/login',(req,res)=>{
     res.render('login');
 });
+app.get('/admin',(req,res)=>{
+    res.render('admin')
+})
 app.use('/user',userRouter);
+app.use('/docter',adminRouter);
 app.use(function (err, req, res, next) {
-    res.status(err.status).send({status:err.status,error:err.message});
+    res.status(err.status||500).send({status:err.status||500,error:err.message});
   })
 app.listen(process.env.PORT || 3000,(err)=>{
     if(err)
