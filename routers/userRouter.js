@@ -2,6 +2,7 @@ const express=require('express');
 const router=express.Router();
 const User=require('../models/users');
 const schedule=require('node-schedule');
+const Set=require('../models/sets');
 const cookieParser=require('cookie-parser');
 const isAuth=require('../config/isAuth');
 router.use(cookieParser());
@@ -38,6 +39,40 @@ router.route('/dashboard')
         }
     })
 
+router.route('/dashboard/form')
+    .get(isAuth,async (req,res,next)=>{
+        try{
+            let arr=new Array;
+            arr=await Set.find({},'name');
+            // console.log(arr);
+            res.render('form',{array:arr,name:req.user.name});
+        }
+        catch(err)
+        {
+            next(err);
+        }
+    })
+    .post(isAuth,async(req,res,next)=>{
+        try{
+            let set=await Set(req.body);
+            req.user.set=set._id;
+            let arr=new Array;
+            Set.activity.forEach(item=>{
+                arr.push({
+                    activity:item._id,
+                    progress:0,
+                    remainder:0
+                });
+            })
+            req.user.activities=arr;
+            await req.user.save();
+            res.send({status:'Done'});
+        }
+        catch(err)
+        {
+            next(err);
+        }
+    })
 router.route('/login')
     .post(async (req,res,next)=>{
         try{

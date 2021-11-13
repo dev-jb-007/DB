@@ -2,7 +2,7 @@ const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 
 const setSchema=new Schema({
-    addiction:{
+    name:{
         type:String
     },
     strength:{
@@ -11,12 +11,16 @@ const setSchema=new Schema({
     time:{
         type:Number
     },
-    activities:[
+    activity:[
         {
             type:mongoose.Schema.Types.ObjectId,
             ref:'activity'
         }
-    ]
+    ],
+    admin:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'user'
+    }
 })
 
 module.exports=mongoose.model('set',setSchema);

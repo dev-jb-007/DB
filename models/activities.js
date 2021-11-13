@@ -3,7 +3,8 @@ const Schema=mongoose.Schema;
 
 const activitySchema=new Schema({
     name:{
-        type:String
+        type:String,
+        unique:true
     },
     description:{
         type:String
