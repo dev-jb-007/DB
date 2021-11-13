@@ -1,6 +1,7 @@
 const express=require('express');
 const router=express.Router();
 const Activity=require('../models/activities');
+const setName=require('../models/setNames');
 const isAuth=require('../config/isAuth');
 const isDocter=require('../config/isDocter');
 const Set=require('../models/sets');
@@ -14,6 +15,7 @@ router.route('/set')
         try{
             // let obj=new Object();
             req.body.admin=req.user._id;
+            // let name=await setName.find({name:req.body})
             // console.log(req.body);
             let newSet=new Set(req.body);
             // console.log(newSet);

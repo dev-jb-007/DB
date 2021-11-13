@@ -47,3 +47,58 @@ templates/views/homepage.ejs, code is 646, comment is 1, blank is 5.
 templates/views/login.ejs, code is 57, comment is 0, blank is 1.
 templates/views/signup.ejs, code is 84, comment is 0, blank is 1.
 ===============================================================================
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2021-11-13 16:59:55
+count workspace : /Users/devpatel/Desktop/DB
+total files : 34
+total code lines : 7066
+total comment lines : 220
+total blank lines : 111
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |            .js|            909|             62|             81|     13|
+   |           .ejs|           1572|              2|             14|     22|
+   |           .css|           2513|            156|             16|     36|
+   |          .json|           2070|              0|              0|     29|
+   |               |              2|              0|              0|  0.028|
+   -------------------------------------------------------------------------
+.env, code is 2, comment is 0, blank is 0.
+app.js, code is 44, comment is 4, blank is 6.
+config/isAuth.js, code is 20, comment is 3, blank is 1.
+config/isDocter.js, code is 17, comment is 0, blank is 0.
+config/mongoose.js, code is 10, comment is 0, blank is 0.
+models/activities.js, code is 16, comment is 0, blank is 1.
+models/sets.js, code is 24, comment is 0, blank is 2.
+models/users.js, code is 60, comment is 2, blank is 0.
+package-lock.json, code is 2039, comment is 0, blank is 0.
+package.json, code is 31, comment is 0, blank is 0.
+routers/adminRouter.js, code is 64, comment is 3, blank is 1.
+routers/userRouter.js, code is 121, comment is 5, blank is 2.
+static/css/admin.css, code is 897, comment is 110, blank is 1.
+static/css/dashboard.css, code is 773, comment is 18, blank is 0.
+static/css/form.css, code is 229, comment is 1, blank is 15.
+static/css/homepage.css, code is 0, comment is 0, blank is 0.
+static/css/login.css, code is 220, comment is 27, blank is 0.
+static/css/signup.css, code is 394, comment is 0, blank is 0.
+static/javascript/admin.js, code is 159, comment is 5, blank is 3.
+static/javascript/dashboard.js, code is 0, comment is 0, blank is 0.
+static/javascript/form.js, code is 131, comment is 29, blank is 30.
+static/javascript/homepage.js, code is 62, comment is 5, blank is 8.
+static/javascript/login.js, code is 22, comment is 0, blank is 0.
+static/javascript/signup.js, code is 23, comment is 1, blank is 0.
+static/javascript/test.js, code is 116, comment is 5, blank is 27.
+static/javascript/utils.js, code is 20, comment is 0, blank is 0.
+templates/partials/navbar.ejs, code is 45, comment is 1, blank is 0.
+templates/views/admin.ejs, code is 63, comment is 0, blank is 7.
+templates/views/dashboard.ejs, code is 538, comment is 0, blank is 0.
+templates/views/form.ejs, code is 127, comment is 0, blank is 0.
+templates/views/homepage.ejs, code is 646, comment is 1, blank is 5.
+templates/views/login.ejs, code is 57, comment is 0, blank is 1.
+templates/views/profile.ejs, code is 12, comment is 0, blank is 0.
+templates/views/signup.ejs, code is 84, comment is 0, blank is 1.
+===============================================================================

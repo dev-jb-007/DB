@@ -3,6 +3,7 @@ const path=require('path');
 const http=require('http');
 const ejs=require('ejs');
 const app=express();
+const setName=require('./models/setNames');
 require('./config/mongoose');
 const isAuth=require('./config/isAuth');
 const server=http.createServer(app);
@@ -32,11 +33,9 @@ app.get('/signup',(req,res)=>{
 app.get('/login',(req,res)=>{
     res.render('login');
 });
-app.get('/admin',(req,res)=>{
-    res.render('admin')
-})
-app.get('/profile',(req,res)=>{
-    res.render('profile');
+app.get('/admin',async (req,res)=>{
+    let arr=await setName.find({});
+    res.render('admin',{arr});
 })
 app.use('/user',userRouter);
 app.use('/docter',adminRouter);

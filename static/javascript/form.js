@@ -11,24 +11,20 @@ async function submitForm(){
     var set=new Object();
     
     // set.addiction=document.getElementById('addiction')
+    
     set.strength=document.getElementById('strength').value;
     set.time=document.getElementById('time').value;
-    // await fetch('/user/dashboard/form',{
-    //     method:'POST',
-    //     headers:{
-    //         'Content-Type':'application/json'
-    //     },
-    //     body:JSON.stringify(set)
-    // })
+    
     console.log(set);
     // let temp=new Array;
     let multipleOptionSelect = document.querySelector('select[multiple]');
-    
+    let selectedAddiction=new Array;
     Array.from(multipleOptionSelect).forEach(item=>{
         // console.log(item);
         if(item.selected==true)
         {
             set.addiction=item.value;
+            selectedAddiction.push(item.value);
             // console.log(item.value);
             // temp.push(item.value);
             // console.log("hi");
@@ -36,7 +32,15 @@ async function submitForm(){
         }
     })
     // set.push(temp);
-    console.log(set);
+    set.addiction=selectedAddiction;
+    console.log(selectedAddiction);
+    await fetch('/user/dashboard/form',{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify(set)
+    })
 }
 
 

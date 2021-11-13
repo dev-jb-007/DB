@@ -24,10 +24,10 @@ const userSchema=new Schema({
         type:Boolean
     },
     set:{
-        set:{
+        
             type:mongoose.Types.ObjectId,
             ref:'set'
-        },
+        
     },
     activities:[
         {

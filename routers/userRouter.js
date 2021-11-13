@@ -39,6 +39,30 @@ router.route('/dashboard')
         }
     })
 
+router.route('/dashboard/profile')
+    .get(isAuth,async (req,res,next)=>{
+        try{
+            res.render('profile',{user:req.user});
+        }
+        catch(err)
+        {
+
+        }
+    })
+router.route('/update')
+    .post(isAuth,async (req,res,next)=>{
+        try{
+            const user=await User.findById(req.user._id);
+            let newUser=await User.findOneAndUpdate(user,req.body,{new:true});
+            console.log(newUser);
+            res.send({status:'Done'});
+
+        }
+        catch(err)
+        {
+            next(err);
+        }
+    })
 router.route('/dashboard/form')
     .get(isAuth,async (req,res,next)=>{
         try{
@@ -54,18 +78,19 @@ router.route('/dashboard/form')
     })
     .post(isAuth,async(req,res,next)=>{
         try{
-            let set=await Set(req.body);
-            req.user.set=set._id;
+            let set=await Set.findOne(req.body);
+            let user=await User.findById(req.user._id);
+            user.set=set._id;
             let arr=new Array;
-            Set.activity.forEach(item=>{
+            set.activity.forEach(item=>{
                 arr.push({
                     activity:item._id,
                     progress:0,
                     remainder:0
                 });
             })
-            req.user.activities=arr;
-            await req.user.save();
+            user.activities=arr;
+            await user.save();
             res.send({status:'Done'});
         }
         catch(err)
@@ -84,7 +109,7 @@ router.route('/login')
             {
                 // console.log('Hello');
                 let x=1;
-                update=schedule.scheduleJob('job-1','*/1 * * * *',async ()=>{
+                update=schedule.scheduleJob('job-1','*/10000000 * * * * *',async ()=>{
                     found.name='Bhavik'+x++;
                     await found.save();
                     console.log('Run');
