@@ -106,6 +106,21 @@ body {
     border: 1px solid #f5ba1a;
     background: #fafafa;
 }
+/* .form_wrapper input[type="number"] #age{
+    color: #afb1be;
+    width: 190px;
+    margin-top:-2px;
+    background: #32364a;
+    left: 0;
+    padding: 10px 65px;
+    border-top: 2px solid #393d52;
+    border-bottom:2px solid #393d52;
+    border-right: none;
+    border-left: none;
+    outline: none;
+    font-family: 'Gudea', sans-serif;
+    box-shadow: none;
+} */
 .form_wrapper input[type="submit"] {
     background: #f5ba1a;
     height: 35px;

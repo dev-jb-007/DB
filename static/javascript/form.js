@@ -9,17 +9,8 @@
 
 async function submitForm(){
     var set=new Object();
-    // let options=document.getElementById('addiction').options
-    // for (var i=0, iLen=options.length; i<iLen; i++) {
-    //     opt = options[i];
     
-    //     if (opt.selected) {
-    //       result.push(opt.value || opt.text);
-    //     }
-    //   }
-    set.addiction=document.getElementById('addiction')
-    // const selected = document.querySelectorAll('#select-meal-type option:checked');
-    // const values = Array.from(selected).map(el => el.value);
+    // set.addiction=document.getElementById('addiction')
     set.strength=document.getElementById('strength').value;
     set.time=document.getElementById('time').value;
     // await fetch('/user/dashboard/form',{
@@ -30,14 +21,22 @@ async function submitForm(){
     //     body:JSON.stringify(set)
     // })
     console.log(set);
+    // let temp=new Array;
     let multipleOptionSelect = document.querySelector('select[multiple]');
+    
     Array.from(multipleOptionSelect).forEach(item=>{
-        console.log(item);
-        if(item.selected==='selected')
+        // console.log(item);
+        if(item.selected==true)
         {
-            console.log(item.value);
+            set.addiction=item.value;
+            // console.log(item.value);
+            // temp.push(item.value);
+            // console.log("hi");
+            // i++;
         }
     })
+    // set.push(temp);
+    console.log(set);
 }
 
 
