@@ -11,7 +11,7 @@ router.use(express.json());
 router.use(express.urlencoded({extended:true}));
 
 router.route('/set')
-    .post(isAuth,async (req,res,next)=>{
+    .post(isAuth,isDocter,async (req,res,next)=>{
         try{
             // let obj=new Object();
             req.body.admin=req.user._id;
@@ -30,7 +30,7 @@ router.route('/set')
         }
     })
 router.route('/activities')
-    .get(isAuth,async (req,res,next)=>{
+    .get(isAuth,isDocter,async (req,res,next)=>{
         try{
             let ac=new Array;
             ac=await Activity.find().populate('docter','name');
@@ -41,7 +41,7 @@ router.route('/activities')
             next(err);
         }
     })
-    .post(isAuth,async (req,res,next)=>{
+    .post(isAuth,isDocter,async (req,res,next)=>{
         try{
             console.log('hello');
             req.body.docter=req.user._id;
@@ -57,7 +57,7 @@ router.route('/activities')
         }
     })
 router.route('/deleteAc')
-    .post(isAuth,async (req,res,next)=>{
+    .post(isAuth,isDocter,async (req,res,next)=>{
         try{
             let ac=await Activity.findByIdAndDelete(req.body.id);
             res.send({status:'Success'});

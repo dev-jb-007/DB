@@ -21,7 +21,8 @@ const userSchema=new Schema({
         type:Boolean
     },
     isDocter:{
-        type:Boolean
+        type:Boolean,
+        default:false
     },
     set:{
             type:mongoose.Types.ObjectId,

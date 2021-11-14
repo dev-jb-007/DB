@@ -7,7 +7,10 @@ const app=express();
 // const isAuth=require('./config/isAuth');
 const setName=require('./models/setNames');
 require('./config/mongoose');
+const sendMailContact=require('./config/sendMailContact');
+const Query=require('./models/queries');
 const isAuth=require('./config/isAuth');
+const isDocter=require('./config/isDocter');
 const server=http.createServer(app);
 const userRouter=require('./routers/userRouter');
 const adminRouter=require('./routers/adminRouter');
@@ -41,12 +44,34 @@ app.post('/',isAuth,async (req,res,next)=>{
 app.get('/signup',(req,res)=>{
     res.render('signup');
 });
+app.post('/contact',async(req,res)=>{
+    try{
+        let query=new Query(req.body);
+        await query.save();
+        sendMailContact(req.body.email);
+        res.send({status:'done'});
+    }
+    catch(err)
+    {
+        next(err);
+    }
+})
 app.get('/login',(req,res)=>{
     res.render('login');
 });
-app.get('/admin',async (req,res)=>{
+app.get('/admin',isAuth,isDocter,async (req,res)=>{
     let arr=await setName.find({});
+    console.log(arr);
     res.render('admin',{arr});
+})
+app.get('/contact',async (req,res)=>{
+    res.render('contact');
+})
+app.get('/team',async (req,res)=>{
+    res.render('team');
+})
+app.get('/policies',async (req,res,next)=>{
+    res.render('policies');
 })
 app.use('/user',userRouter);
 app.use('/docter',adminRouter);

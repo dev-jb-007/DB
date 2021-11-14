@@ -20,5 +20,6 @@ async function signup(){
         },
         body:JSON.stringify(user)
     })
+    window.location.href="/user/dashboard";
     console.log(user);
 }

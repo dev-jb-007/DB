@@ -1,8 +1,9 @@
 const auth=async (req,res,next)=>{
     try{
-        console.log('Docter');
-        if(req.user.isDocter)
+        console.log(req.user.isDocter);
+        if(req.user.isDocter===true)
         {
+            console.log('Hi');
             next();
         }
         else{
@@ -11,6 +12,7 @@ const auth=async (req,res,next)=>{
     }
     catch(err)
     {
+        console.log('error');
         res.status(401).send({error:'You are not a docter'})
     }
 }

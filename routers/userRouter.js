@@ -100,7 +100,7 @@ router.route("/dashboard/sendMail").post(isAuth, async (req, res, next) => {
       if (ac[i].activity.toString() === req.body.id) {
         // console.log('Hi');
         ac[i].remainder = req.body.time;
-        let string = "* * " + req.body.time + " * * * *";
+        let string = "*/"+req.body.time+ " * * * * *";
         // console.log(string);
         let x = await Activity.findById(ac[i].activity.toString(), "name");
         let jobName = "remainder" + ac[i].activity.toString();
@@ -147,7 +147,12 @@ router.route("/info").get(isAuth, async (req, res, next) => {
     user.activities.forEach((element) => {
       filter(element.activity.docter);
     });
-    let set = await Set.findById(user.set._id);
+    let set;
+    if(user.set)
+    {
+      set = await Set.findById(user.set._id);
+      
+    }
     res.send({ user, set });
   } catch (err) {
     next(err);

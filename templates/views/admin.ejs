@@ -24,7 +24,7 @@
     <%- include ('../partials/navbar.ejs') %>
     <section id="set-admin">
         <div id="set-add">
-            <!-- <input type="text" name="set" id="setname"> -->
+            <h2 style="width: max-content;margin: auto;font-size: 2em;">Create Set</h2>
             <div class="container">
                 <label><h1>Sample Multi Data Select Box</h1></label>
                 <br/><br/>
@@ -39,15 +39,24 @@
             <output id="rangevalue">50</output>
             </div>
             <input type="number" name="time" id="time">
-            <button onclick="postSet()">Submit</button>
+            <svg onclick="postSet()" class="app-sidebar-link" style="border:none;cursor:pointer;margin:10px auto 10px  auto"xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+              </svg>
         </div>
+        <div style="width: 80%;height: 3px;background-color: black;"></div>
         <div id="add-activity">
-            <input type="text" name="name" id="activity-name">
-            <input type="text" name="description" id="activity-description">
-            <button onclick="postActivity()">Submit</button>
+            <h2 style="width: max-content;font-size: 2em;">Create Activity</h2>
+            <input type="text" name="name" id="activity-name" placeholder="Activity Name:">
+            <input type="text" style="height: 120px;" name="description" id="activity-description" placeholder="Activity Description:">
+            
+              <div id="replacingloader">
+                <svg onclick="postActivity()" class="app-sidebar-link" style="border:none;cursor:pointer;margin:10px auto 10px  auto"xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                  </svg>
+              </div>
         </div>
     </section>
-    <div class="projects-section">
+    <div class="projects-section" style="overflow: hidden;">
         <div class="projects-section-header">
             <p>Total Activities</p>
         </div>

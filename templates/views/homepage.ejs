@@ -19,18 +19,30 @@
 </head>
 <body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
   <!--Nav-->
-  <%- include ('../partials/navbar.ejs') %>
+  <!-- <%- include ('../partials/navbar.ejs') %> -->
+  <div class="mynavbar">
+    <div class="mynavbar-left">
+      <h1 style="margin-top: 30px"><a href="/" style="text-decoration: none;">DBCentre</a></h1>
+    </div>
+    <div class="mynavbar-right">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li id="logincredential"><a href="/login">LogIn / SignUp</a></li>
+      </ul>
+    </div>
+  </div>
+  
   <!--Hero-->
   <div class="pt-24">
     <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
       <!--Left Col-->
       <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-        <p class="uppercase tracking-loose w-full">What business are you?</p>
+        <p class="uppercase tracking-loose w-full">Are You Addicted?</p>
         <h1 class="my-4 text-5xl font-bold leading-tight">
-          Main Hero Message to sell yourself!
+          Yeah..!!! You Landed Up to a Right Place...
         </h1>
         <p class="leading-normal text-2xl mb-8">
-          Sub-hero message, not too long and not too short. Make it just right!
+          Want to remove Your Addiction?, Avail Your Free Trial...
         </p>
         <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
           Subscribe
@@ -38,7 +50,7 @@
       </div>
       <!--Right Col-->
       <div class="w-full md:w-3/5 py-6 text-center">
-        <img class="w-full md:w-4/5 z-50" src="hero.png" />
+        <img class="w-full md:w-4/5 z-50" style="width: 60px;height: 60px;color:white;" src="/images/icon.svg" />
       </div>
     </div>
   </div>
@@ -64,7 +76,7 @@
   <section class="bg-white border-b py-8">
     <div class="container max-w-5xl mx-auto m-8">
       <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-        Title
+        Features Of This Platform
       </h1>
       <div class="w-full mb-4">
         <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
@@ -72,16 +84,16 @@
       <div class="flex flex-wrap">
         <div class="w-5/6 sm:w-1/2 p-6">
           <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-            Lorem ipsum dolor sit amet
+            Support Of Certified Doctors and Psychiatrist 
           </h3>
           <p class="text-gray-600 mb-8">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
+            You will get one to one guidance and support from various top certified Doctors and Psychiatrist. Proper activities will be given by doctors.
             <br />
             <br />
 
-            Images from:
+            <!-- Images from:
 
-            <a class="text-pink-500 underline" href="https://undraw.co/">undraw.co</a>
+            <a class="text-pink-500 underline" href="https://undraw.co/">undraw.co</a> -->
           </p>
         </div>
         <div class="w-full sm:w-1/2 p-6">
@@ -365,15 +377,13 @@
         <div class="w-full sm:w-1/2 p-6 mt-6">
           <div class="align-middle">
             <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-              Lorem ipsum dolor sit amet
+              Reminder System
             </h3>
             <p class="text-gray-600 mb-8">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
+              Daily Reports will be provided like progress, and reminders of tasks which are not completed,etc via mails.
               <br />
               <br />
-              Images from:
-
-              <a class="text-pink-500 underline" href="https://undraw.co/">undraw.co</a>
+             
             </p>
           </div>
         </div>
@@ -383,7 +393,7 @@
   <section class="bg-white border-b py-8">
     <div class="container mx-auto flex flex-wrap pt-4 pb-12">
       <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-        Title
+       Our Top Doctor's and Psychiatrists
       </h1>
       <div class="w-full mb-4">
         <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
@@ -392,20 +402,22 @@
         <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
           <a href="#" class="flex flex-wrap no-underline hover:no-underline">
             <p class="w-full text-gray-600 text-xs md:text-sm px-6">
-              xGETTING STARTED
+              <img src="https://unsplash.it/100/100" style="border-radius: 50%;margin: auto;" alt="">
             </p>
-            <div class="w-full font-bold text-xl text-gray-800 px-6">
-              Lorem ipsum dolor sit amet.
+            <div style="margin-top: 50px;" class="w-full font-bold text-xl text-gray-800 px-6">
+              Dr.Rohan Mehra
             </div>
             <p class="text-gray-800 text-base px-6 mb-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
+              Dr. Rohan Mehra  is one of the best doctors of our institution. One of the most puctual we have here. Being a specialized Doctor, the doctor offers a number of medical services. These include Grommet Insertion, Ent Checkup (General) among others.
             </p>
+            <hr>
+            <p class="text-gray-800 text-base px-6 mb-5">25yrs+ of experience</p>
           </a>
         </div>
         <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
           <div class="flex items-center justify-start">
             <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-              Action
+              Contact
             </button>
           </div>
         </div>
@@ -414,21 +426,24 @@
         <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
           <a href="#" class="flex flex-wrap no-underline hover:no-underline">
             <p class="w-full text-gray-600 text-xs md:text-sm px-6">
-              xGETTING STARTED
+              <img src="https://unsplash.it/100/100" style="border-radius: 50%;margin: auto;" alt="">
             </p>
-            <div class="w-full font-bold text-xl text-gray-800 px-6">
-              Lorem ipsum dolor sit amet.
+            <div style="margin-top: 50px;" class="w-full font-bold text-xl text-gray-800 px-6">
+              DR. SS Rajamouli
             </div>
             <p class="text-gray-800 text-base px-6 mb-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
+              Pediatric Cardiologist, Bypass Surgeons,Cardiac Surgeon,Cardiologist,Pediatric Cardiologist,Pediatrician.
+              That's seems to much for one person but she is expert in all these fields.
             </p>
+            <hr>
+            <p class="text-gray-800 text-base px-6 mb-5">20yrs+ of experience</p>
           </a>
         </div>
         <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
           <div class="flex items-center justify-center">
-            <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-              Action
-            </button>
+            <a href="mailto:devpatel8907@gmail.com" class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+              Contact
+            </a>
           </div>
         </div>
       </div>
@@ -436,14 +451,16 @@
         <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
           <a href="#" class="flex flex-wrap no-underline hover:no-underline">
             <p class="w-full text-gray-600 text-xs md:text-sm px-6">
-              xGETTING STARTED
+              <img src="https://unsplash.it/100/100" style="border-radius: 50%;margin: auto;" alt="">
             </p>
-            <div class="w-full font-bold text-xl text-gray-800 px-6">
-              Lorem ipsum dolor sit amet.
+            <div style="margin-top: 50px;" class="w-full font-bold text-xl text-gray-800 px-6">
+              DR. Mehul Choksi
             </div>
             <p class="text-gray-800 text-base px-6 mb-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
+              Dr. Mehul Choksi is a practising physician at our institution with special interest in clinical cardiology and diabetes. His experties are in BHMS, MPH, EECP Cardiologist, Bypass Surgeons.
             </p>
+            <hr>
+            <p class="text-gray-800 text-base px-6 mb-5">30yrs+ of experience</p>
           </a>
         </div>
         <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
@@ -478,8 +495,8 @@
           </div>
           <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
             <div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">
-              £0
-              <span class="text-base">for one user</span>
+              Free
+              <span class="text-base">For One User</span>
             </div>
             <div class="flex items-center justify-center">
               <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
@@ -496,13 +513,13 @@
               <li class="border-b py-4">2 Months Validity</li>
               <li class="border-b py-4">Doctor Support</li>
               <li class="border-b py-4">Reminder System</li>
-              <li class="border-b py-4">Weekly Checkup</li>
+              <li class="border-b py-4">Free For SVNIT Students</li>
             </ul>
           </div>
           <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
             <div class="w-full pt-6 text-4xl font-bold text-center">
-              £x.99
-              <span class="text-base">/ per user</span>
+              ₹99
+              <span class="text-base">/ Per User</span>
             </div>
             <div class="flex items-center justify-center">
               <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
@@ -518,14 +535,15 @@
             </div>
             <ul class="w-full text-center text-sm">
               <li class="border-b py-4">6 Months Validity</li>
-              <li class="border-b py-4">Thing</li>
-              <li class="border-b py-4">Thing</li>
+              <li class="border-b py-4">Doctor Support</li>
+              <li class="border-b py-4">Reminder System</li>
+              <li class="border-b py-4">Weekly Checkup</li>
             </ul>
           </div>
           <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
             <div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">
-              £x.99
-              <span class="text-base">/ per user</span>
+              ₹999
+              <span class="text-base">/ Per User</span>
             </div>
             <div class="flex items-center justify-center">
               <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
@@ -538,7 +556,7 @@
     </div>
   </section>
   <!-- Change the colour #f8fafc to match the previous section colour -->
-  <svg class="wave-top" viewBox="0 0 1439 147" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!--<svg class="wave-top" viewBox="0 0 1439 147" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
       <g transform="translate(-1.000000, -14.000000)" fill-rule="nonzero">
         <g class="wave" fill="#f8fafc">
@@ -572,7 +590,7 @@
     <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
       Action!
     </button>
-  </section>
+  </section>-->
   <!--Footer-->
   <footer class="bg-white">
     <div class="container mx-auto px-8">
@@ -580,14 +598,8 @@
         <div class="flex-1 mb-6 text-black">
           <a class="text-pink-600 no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="#">
             <!--Icon from: http://www.potlabicons.com/ -->
-            <svg class="h-8 fill-current inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.005 512.005">
-              <rect fill="#2a2a31" x="16.539" y="425.626" width="479.767" height="50.502" transform="matrix(1,0,0,1,0,0)" />
-              <path
-                class="plane-take-off"
-                d=" M 510.7 189.151 C 505.271 168.95 484.565 156.956 464.365 162.385 L 330.156 198.367 L 155.924 35.878 L 107.19 49.008 L 211.729 230.183 L 86.232 263.767 L 36.614 224.754 L 0 234.603 L 45.957 314.27 L 65.274 347.727 L 105.802 336.869 L 240.011 300.886 L 349.726 271.469 L 483.935 235.486 C 504.134 230.057 516.129 209.352 510.7 189.151 Z "
-              />
-            </svg>
-            LANDING
+            <img src="/images/icon.svg" style="width: 100px;height: 100px;"alt="">
+            DBCENTRE
           </a>
         </div>
         <div class="flex-1">
@@ -608,10 +620,7 @@
           <p class="uppercase text-gray-500 md:mb-6">Legal</p>
           <ul class="list-reset mb-6">
             <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-              <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Terms</a>
-            </li>
-            <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-              <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Privacy</a>
+              <a href="/policies" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Privacy Policy</a>
             </li>
           </ul>
         </div>
@@ -619,10 +628,10 @@
           <p class="uppercase text-gray-500 md:mb-6">Social</p>
           <ul class="list-reset mb-6">
             <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-              <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Facebook</a>
+              <a href="https://www.facebook.com/dev.patel.754918/" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Facebook</a>
             </li>
             <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-              <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Linkedin</a>
+              <a href="https://www.linkedin.com/in/dev-patel-68b8b3195/" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Linkedin</a>
             </li>
             <li class="mt-2 inline-block mr-2 md:block md:mr-0">
               <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Twitter</a>
@@ -633,19 +642,18 @@
           <p class="uppercase text-gray-500 md:mb-6">Company</p>
           <ul class="list-reset mb-6">
             <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-              <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Official Blog</a>
+              <a href="/team" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Team</a>
             </li>
             <li class="mt-2 inline-block mr-2 md:block md:mr-0">
               <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">About Us</a>
             </li>
             <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-              <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Contact</a>
+              <a href="/contact" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Contact</a>
             </li>
           </ul>
         </div>
       </div>
     </div>
-    <a href="https://www.freepik.com/free-photos-vectors/background" class="text-gray-500">Background vector created by freepik - www.freepik.com</a>
   </footer>
 </body>
 <script src="/javascript/homepage.js"></script>
