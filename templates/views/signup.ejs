@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/signup.css">
     <title>Login</title>
 </head>
 <body>
@@ -16,7 +16,7 @@
       </div>
       <div class="login">
         <div class="login_title">
-          <span>SignUp To Your Account</span>
+          <span><h1>SignUp To Your Account</h1></span>
         </div>
         <div class="login_fields">
           <div class="login_fields__user">
@@ -61,24 +61,27 @@
           </div> -->
           <div class="input_field radio_option">
             <input type="radio" name="radiogroup1" id="rd1">
-            <label for="rd1">Male</label>
+            <label for="rd1"><h2>Male</h2></label>
             <input type="radio" name="radiogroup1" id="rd2">
-            <label for="rd2">Female</label>
+            <label for="rd2"><h2>Female</h2></label>
           </div>
           <div class="login_fields__submit">
-            <input onclick="signup()" type="submit" value="SignUp"></input>
+            <!-- <input onclick="signup()" type="submit" value="SignUp"></input> -->
+            <svg onclick="signup()" class="app-sidebar-link" style="border:none;cursor:pointer"xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+            </svg>
             <div class="forgot">
-              <a href="/login">Log In</a>
+              <a href="/login"><h1>Log In</h1></a>
             </div>
           </div>
         </div>
-        <div class="success">
+        <!-- <div class="success">
           <h2>Authentication Success</h2>
           <p>Welcome back</p>
         </div>
         <div class="disclaimer">
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper laoreet placerat. Nullam semper auctor justo, rutrum posuere odio vulputate nec.</p>
-        </div>
+        </div> -->
       </div>
 </body>
 <script src="/javascript/signup.js"></script>

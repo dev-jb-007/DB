@@ -1,4 +1,4 @@
-body {
+/* body {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 14px;
     background: #f2f2f2;
@@ -106,21 +106,7 @@ body {
     border: 1px solid #f5ba1a;
     background: #fafafa;
 }
-/* .form_wrapper input[type="number"] #age{
-    color: #afb1be;
-    width: 190px;
-    margin-top:-2px;
-    background: #32364a;
-    left: 0;
-    padding: 10px 65px;
-    border-top: 2px solid #393d52;
-    border-bottom:2px solid #393d52;
-    border-right: none;
-    border-left: none;
-    outline: none;
-    font-family: 'Gudea', sans-serif;
-    box-shadow: none;
-} */
+
 .form_wrapper input[type="submit"] {
     background: #f5ba1a;
     height: 35px;
@@ -406,4 +392,54 @@ body {
     .remember_me {
         padding-bottom: 20px;
    }
-}
+} */
+
+#email{
+	width: 50%;
+    background-color: #f3f6fd;
+    height: 80px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    padding: 10px 20px;
+  }
+  #password{
+	width: 50%;
+    background-color: #f3f6fd;
+    height: 80px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    padding: 10px 20px;
+  }
+  #age{
+    width: 50%;
+    background-color: #f3f6fd;
+    height: 80px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    padding: 10px 20px;
+  }
+  #yourname{
+    width: 50%;
+    background-color: #f3f6fd;
+    height: 80px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    padding: 10px 20px;
+  }
+  /* .login_fields{
+	  align-items: center;
+	  margin-left: 200px;
+  } */
+  .login{
+	  align-items: center;
+	  margin-left: 400px;
+  }
+  .login_fields__submit{
+	  display: flex;
+	  justify-content: space-evenly;
+	  margin-left: -490px;
+  }
+  .input_field{
+      display: flex;
+  }
+
