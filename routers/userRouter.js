@@ -19,7 +19,7 @@ router.route("/signup").post(async (req, res, next) => {
   try {
     let user = new User(req.body);
     let token = await user.createAuthToken();
-    schedule.scheduleJob('plan-days','/10 * * * * *',async ()=>{
+    schedule.scheduleJob('plan-days','0 0 0 * * *',async ()=>{
       console.log('Minus');
         user.remainingDays--;
         await user.save();
@@ -251,6 +251,13 @@ router
       .then(async (charge) => {
         const user=await User.findById(req.user._id);
         user.plan=req.query.plan;
+        if(req.query.plan=='basic')
+        {
+          user.remainingDays=60;
+        }
+        else{
+          user.remainingDays=180;
+        }
         await user.save();
         res.send(charge); // If no error occurs
       })

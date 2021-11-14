@@ -245,6 +245,7 @@
     font-size: 1.5rem;
     border-radius: 10px;
     padding: 10px 20px;
+	border:1px solid #212f3d;
   }
   #password{
 	width: 50%;
@@ -253,6 +254,7 @@
     font-size: 1.5rem;
     border-radius: 10px;
     padding: 10px 20px;
+	border:1px solid #212f3d;
   }
   /* .login_fields{
 	  align-items: center;
@@ -266,4 +268,14 @@
 	  display: flex;
 	  justify-content: space-evenly;
 	  margin-left: -490px;
+  }
+  footer{
+	  background-color: #f3f6fd;
+	  position:absolute;
+	  bottom: 0px;
+	  left:0px;
+	  right: 0px;
+  }
+  body{
+	  background-color: #f3f6fd;
   }

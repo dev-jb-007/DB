@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="/css/login.css">
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" />
 
+    
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/navbar.css">
     <title>Login</title>
 </head>
 <body>
-    
+  <%- include ('../partials/navbar.ejs') %>
     <div class="brand">
       <svg class="wave-top" viewBox="0 0 1439 147" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="user-select: auto;">
         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" style="user-select: auto;">
@@ -72,6 +74,7 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper laoreet placerat. Nullam semper auctor justo, rutrum posuere odio vulputate nec.</p>
         </div> -->
       </div>
+      <%- include ('../partials/footer.ejs') %>
 </body>
 <script src="/javascript/login.js"></script>
 </html>

@@ -990,13 +990,14 @@ body {
   }
 
   #time{
-    width: 70%;
+    width: 85%;
     background-color: #f3f6fd;
     height: 40px;
     font-size: 1.5rem;
     border-radius: 10px;
     padding: 10px 20px;
     margin-bottom: 5px;
+    /* margin-left: -28px; */
   }
   #activity-name{
     width: 70%;
@@ -1006,6 +1007,7 @@ body {
     border-radius: 10px;
     padding: 10px 20px;
     margin-bottom: 5px;
+    margin-left: 110px;
   }
   #activity-description{
     width: 70%;
@@ -1015,9 +1017,10 @@ body {
     border-radius: 10px;
     padding: 10px 20px;
     margin-bottom: 5px;
+    margin-left: 110px;
   }
   .slider {
-    width: 70%;
+    width: 25%;
     /* height: 60px; */
   }
   .slider input {
@@ -1035,4 +1038,10 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+}
+body{
+  background-color: #f3f6fd;
+}
+footer{
+  background-color: #f3f6fd;
 }
