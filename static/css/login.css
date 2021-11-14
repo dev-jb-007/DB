@@ -263,11 +263,18 @@
   .login{
 	  align-items: center;
 	  margin-left: 400px;
+	  margin-top: 0px;
+	  overflow: scroll;
   }
   .login_fields__submit{
 	  display: flex;
 	  justify-content: space-evenly;
+	  overflow: scroll;
 	  margin-left: -490px;
+  }
+  .login_fields{
+	  margin: auto;
+	  overflow: scroll;
   }
   footer{
 	  background-color: #f3f6fd;
@@ -275,6 +282,7 @@
 	  bottom: 0px;
 	  left:0px;
 	  right: 0px;
+	  margin-top: 100px;
   }
   body{
 	  background-color: #f3f6fd;
