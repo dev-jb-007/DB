@@ -4,7 +4,7 @@ var navcontent = document.getElementById("nav-content");
 var navaction = document.getElementById("navAction");
 var brandname = document.getElementById("brandname");
 var toToggle = document.querySelectorAll(".toggleColour");
-
+isAuth();
 document.addEventListener("scroll", function () {
 
   scrollpos = window.scrollY;
@@ -73,3 +73,36 @@ var navMenuDiv = document.getElementById("nav-content");
         }
         return false;
       }
+
+
+    async function isAuth(){
+      let div=document.getElementById('loginCredentials');
+      let buffer=await fetch('/',{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+      })
+      const ans=await buffer.json();
+      console.log(ans);
+      if(ans.status)
+      {
+        div.innerHTML=`
+        <button
+        id="navAction"
+        class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+      onclick="window.location.href='/user/dashboard'">
+        Dashboard
+      
+      `
+        
+      }
+      else{
+        div.innerHTML=`<button
+        id="navAction"
+        class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+      onclick="window.location.href='/login'">
+        Log In / Sign Up
+      </button>`
+      }
+    }

@@ -6,35 +6,79 @@ async function getUserInfo(){
     user=ans.user;
     console.log(user);
     displayActivity();
+    liveData();
 }
 let html=``;
-// async function deleteActivity(id) {
-//     // console.log(id);
-//     // console.log('Check');
-//     const buffer = await fetch("/docter/deleteAc", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ id }),
-//     });
-//     const ans = await buffer.json();
-//     // console.log(ans);
-//     getActivities(true);
-//   }
-//   function itemTotalDisplay(){
-//       let div=document.querySelector('.item-status');
-//       div.innerHTML=`<div class="item-status">
-//       <span class="status-number">${activity.length}</span>
-//       <span class="status-type">Total Projects</span>
-//     </div>`
-//   }
- 
+
+ async function valueChange(id,value,element){
+      let onchangevalue=Object();
+      onchangevalue.id=id;
+      onchangevalue.value=value;
+      element.parentElement.children[1].innerHTML=value+'%';
+      element.parentElement.children[0].value=value;
+      liveData();
+      // getUserInfo();
+      const buffer=await fetch('/user/dashboard/activityProgress',{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify(onchangevalue)
+      })
+      const ans=await buffer.json();
+      console.log(ans);
+ }
+ function liveData(){
+   var pending=0,inProgress=0,completed=0;
+   let temp=``;
+   let divtemp=document.getElementById("upperData");
+  //  document.getElementById('totalActivities').innerHTML=user.activities.length;
+   user.activities.forEach((element)=>{
+     if(element.progress===100){
+       completed++;
+     }
+     else if(element.progress===0){
+       pending++;
+     }
+     else{
+       inProgress++;
+     }
+   })
+  //  document.getElementById('pending').innerHTML=pending;
+  //  document.getElementById('progress').innerHTML=inProgress;
+  //  document.getElementById('completed').innerHTML=completed;
+
+   temp= `
+   <div class="projects-status" onchange="liveData()">
+               <div class="item-status">
+                 <span class="status-number" id="pending">${pending}</span>
+                 <span class="status-type">Pending</span>
+               </div>
+               <div class="item-status">
+                 <span class="status-number" id="progress">${inProgress}</span>
+                 <span class="status-type">In Progress</span>
+               </div>
+               <div class="item-status">
+                 <span class="status-number" id="completed">${completed}</span>
+                 <span class="status-type">Completed Activites</span>
+               </div>
+               <div class="item-status">
+                 <span class="status-number" id="totalActivities">${user.activities.length}</span>
+                 <span class="status-type">Total Activities</span>
+               </div>
+             </div>
+   `
+   divtemp.innerHTML = temp;
+
+ }
+
   function displayActivity(ac, x) {
     // console.log(ac);
     let localhtml = ``;
     let length = user.activities;
     let div = document.getElementById("project-boxes");
+    
+   
     // console(user.activities);
 
    user.activities.forEach((element) => {
@@ -45,12 +89,12 @@ let html=``;
     <div class="project-box" style="background-color: #fee4cb;">
         <div class="project-box-header">
         <span>December 10, 2020</span>
-        <div class="more-wrapper" onclick="changeState(this)">
-        <svg xmlns="http://www.w3.org/2000/svg" id="uncheck" width="30" height="30" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+        <div class="more-wrapper" onclick="changeState('${element.activity._id}',this)">
+        <svg xmlns="http://www.w3.org/2000/svg" style="opacity:${(element.progress==100)?0:1}" id="uncheck" width="30" height="30" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
             <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
         </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" id="check" width="30" height="30" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+        <svg xmlns="http://www.w3.org/2000/svg" style="opacity:${(element.progress==100)?1:0}" id="check" width="30" height="30" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
         </svg>
     </div>
@@ -61,21 +105,20 @@ let html=``;
     </div>
     <div class="box-progress-wrapper">
     <p class="box-progress-header">Progress</p>
-    <div class="box-progress-bar">
-    <span class="box-progress" style="width: 60%; background-color: #ff942e"></span>
+
+    
+    <div class="slider">
+          <input type = "range" id="strength" min="0" max="100" value='${element.progress}'  onclick="valueChange('${element.activity._id}',this.value,this)" onchange="rangevalue.value=${element.progress}"/>
+          <output id="rangevalue">${element.progress}%</output>
+    
     </div>
-    <p class="box-progress-percentage">${element.progress}%</p>
     </div>
     <div class="project-box-footer">
-    <div class="participants">
-    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt="participant">
-    <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="participant">
-    <button class="add-participant" style="color: #ff942e;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-        <path d="M12 5v14M5 12h14" />
-        </svg>
-    </button>
-    </div>
+      <input style="width:40px;height:40px;background-color:transparent;border:none" type="number" placeholder="0"></input>
+      <div class="form-check form-switch" style="cursor:pointer">
+        <input class="form-check-input" type="checkbox" role="switch" onclick="Reminder(this,'${element.activity._id}')" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+      </div>
     <div class="days-left" style="color: #ff942e;">
     <p>${element.activity.docter.name}<p>
     </div>
@@ -92,8 +135,10 @@ let html=``;
     }
   }
   
-  function changeState(element)
+  function changeState(id,element)
   {
+      let input=element.parentElement.parentElement.children[2].children[1].children[0];
+      let value;
       let uncheck=element.children[0];
       let check=element.children[1];
       console.log(uncheck,check);
@@ -101,9 +146,113 @@ let html=``;
       {
           uncheck.style.opacity=1;
           check.style.opacity=0;
+          value=0;
       }
       else{
         uncheck.style.opacity=0;
         check.style.opacity=1;
+        value=100;
       }
+      // liveData();
+      
+      valueChange(id,value,input);
   }
+
+  async function Reminder(element,id){
+    if(element.checked)
+    {
+      let value=element.parentElement.parentElement.children[0].value;
+      let buffer=await fetch('/user/dashboard/sendMail',{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({time:value,id})
+      })
+      let answer=await buffer.json();
+      console.log(answer);
+    }
+    else{
+      element.parentElement.parentElement.children[0].value=0;
+      let buffer=await fetch('/user/dashboard/cancelMail',{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({id})
+      })
+      let answer=await buffer.json();
+      console.log(answer);
+      // console.log(value);
+    }
+  }
+
+
+
+  //Search Algorithm
+
+  function getSearchResults(value) {
+    let div = document.getElementById("project-boxes");
+  if (value != "") {
+    let insideHtml = ``;
+    user.activities.forEach((element) => {
+        console.log(element);
+        // str = str.replace(/\s/g, '');
+        let x=element.activity.name.replace(/\s/g, '').toLowerCase();
+        let y=value.replace(/\s/g, '').toLowerCase();
+        // console.log(x,y);
+      if (x.includes(y)) {
+        insideHtml += `
+        <div class="project-box-wrapper">
+        <div class="project-box" style="background-color: #fee4cb;">
+            <div class="project-box-header">
+            <span>December 10, 2020</span>
+            <div class="more-wrapper" onclick="changeState('${element.activity._id}',this)">
+            <svg xmlns="http://www.w3.org/2000/svg" style="opacity:${(element.progress==100)?0:1}" id="uncheck" width="30" height="30" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" style="opacity:${(element.progress==100)?1:0}" id="check" width="30" height="30" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg>
+        </div>
+        </div>
+        <div class="project-box-content-header">
+        <p class="box-content-header">${element.activity.name}</p>
+        <p class="box-content-subheader">${element.activity.description}</p>
+        </div>
+        <div class="box-progress-wrapper">
+        <p class="box-progress-header">Progress</p>
+    
+        
+        <div class="slider">
+              <input type = "range" id="strength" min="0" max="100" value='${element.progress}'  onclick="valueChange('${element.activity._id}',this.value,this)" onchange="rangevalue.value=${element.progress}"/>
+              <output id="rangevalue">${element.progress}%</output>
+        
+        </div>
+        </div>
+        <div class="project-box-footer">
+          <input style="width:40px;height:40px;background-color:transparent;border:none" type="number" placeholder="0"></input>
+          <div class="form-check form-switch" style="cursor:pointer">
+            <input class="form-check-input" type="checkbox" role="switch" onclick="Reminder(this,'${element.activity._id}')" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+          </div>
+        <div class="days-left" style="color: #ff942e;">
+        <p>${element.activity.docter.name}<p>
+        </div>
+        </div>
+        </div>
+        </div>
+        `;
+      }
+    });
+    
+    div.innerHTML = insideHtml;
+  }
+  else{
+      div.innerHTML=html;
+  }
+}
+document.getElementById("search-input").addEventListener("keyup", () => {
+  getSearchResults(document.getElementById("search-input").value);
+});

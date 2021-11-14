@@ -602,11 +602,12 @@ button, a {
 }
 .project-box-footer {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding-top: 16px;
   position: relative;
 }
-.project-box-footer:after {
+/* .project-box-footer:after {
   content: '';
   position: absolute;
   background-color: rgba(255, 255, 255, 0.6);
@@ -614,7 +615,7 @@ button, a {
   top: 0;
   left: -16px;
   height: 1px;
-}
+} */
 .participants {
   display: flex;
   align-items: center;
@@ -798,3 +799,187 @@ button, a {
     top: 10px;
   }
 }
+/*slider*/
+.range {
+  position: relative;
+  width: 550px;
+  height: 5px;
+}
+.range input {
+  width: 100%;
+  position: absolute;
+  top: 2px;
+  height: 0;
+  -webkit-appearance: none;
+}
+.range input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin: -8px 0 0;
+  border-radius: 50%;
+  background: #37adbf;
+  cursor: pointer;
+  border: 0 !important;
+}
+.range input::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  margin: -8px 0 0;
+  border-radius: 50%;
+  background: #37adbf;
+  cursor: pointer;
+  border: 0 !important;
+}
+.range input::-ms-thumb {
+  width: 18px;
+  height: 18px;
+  margin: -8px 0 0;
+  border-radius: 50%;
+  background: #37adbf;
+  cursor: pointer;
+  border: 0 !important;
+}
+.range input::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: #b2b2b2;
+}
+.range input::-moz-range-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: #b2b2b2;
+}
+.range input::-ms-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: #b2b2b2;
+}
+.range input:focus {
+  background: none;
+  outline: none;
+}
+.range input::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+.range-labels {
+  margin: 18px -41px 0;
+  padding: 0;
+  list-style: none;
+}
+.range-labels li {
+  position: relative;
+  float: left;
+  width: 90.25px;
+  text-align: center;
+  color: #b2b2b2;
+  font-size: 14px;
+  cursor: pointer;
+}
+.range-labels li::before {
+  position: absolute;
+  top: -25px;
+  right: 0;
+  left: 0;
+  content: "";
+  margin: 0 auto;
+  width: 9px;
+  height: 9px;
+  background: #b2b2b2;
+  border-radius: 50%;
+}
+.range-labels .active {
+  color: #37adbf;
+}
+.range-labels .selected::before {
+  background: #37adbf;
+}
+.range-labels .active.selected::before {
+  display: none;
+}
+.slider {
+  width: 100%;
+  height: 60px;
+}
+.slider input {
+  width: 100%;
+  height: 40px;
+  background-color: #f3f6fd;
+}
+
+
+/*loder*/
+.loader {
+	 position: relative;
+	 width: 2.5em;
+	 height: 2.5em;
+	 transform: rotate(165deg);
+}
+ .loader:before, .loader:after {
+	 content: "";
+	 position: absolute;
+	 top: 50%;
+	 left: 50%;
+	 display: block;
+	 width: 0.5em;
+	 height: 0.5em;
+	 border-radius: 0.25em;
+	 transform: translate(-50%, -50%);
+}
+ .loader:before {
+	 animation: before 2s infinite;
+}
+ .loader:after {
+	 animation: after 2s infinite;
+}
+ @keyframes before {
+	 0% {
+		 width: 0.5em;
+		 box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+	}
+	 35% {
+		 width: 2.5em;
+		 box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+	}
+	 70% {
+		 width: 0.5em;
+		 box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+	}
+	 100% {
+		 box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+	}
+}
+ @keyframes after {
+	 0% {
+		 height: 0.5em;
+		 box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+	}
+	 35% {
+		 height: 2.5em;
+		 box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+	}
+	 70% {
+		 height: 0.5em;
+		 box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+	}
+	 100% {
+		 box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+	}
+}
+/** * Attempt to center the whole thing! */
+ html, body {
+	 height: 100%;
+}
+ .loader {
+	 position: absolute;
+	 top: calc(55% - 1.25em);
+	 left: calc(36% - 1.25em);
+}
+ 

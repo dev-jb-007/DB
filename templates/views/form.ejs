@@ -63,7 +63,7 @@
                 <path d="M21.21 15.89A10 10 0 118 2.83M22 12A10 10 0 0012 2v10z" />
               </svg>
             </a>
-            <a href="/user/dashboard/profile" class="app-sidebar-link">
+            <a href="/user/dashboard/payment" class="app-sidebar-link">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                 <line x1="16" y1="2" x2="16" y2="6" />
@@ -93,29 +93,32 @@
                 <form>
                     <!-- <select id="addiction" name="addiction">
                         <option id="0"> Please choose your addiction </option>
-                        <% array.map(item=> { %>
+                        <% x.map(item=> { %>
                          <option id="<%= item._id%>"> <%= item.name %> </option>
                         <% }) %>
                     <select> -->
-                      <div class="container">
-                        <label>Sample Multi Data Select Box</label>
+                      <!-- <div class="container"> -->
+                        <label>Select Your Addiction</label>
                         <br/><br/>
                           <select name="" multiple id="addiction">
                   
                               <% x.forEach(item=>{ %>
-                                <option><%= item.name %></option>
+                                <option  id="<%= item._id%>"><%= item.name %></option>
                               <% }) %>
                           
                           </select>
-                      </div>
+                      <!-- </div> -->
                     <div class="slider">
                         <input type = "range" id="strength" min="0" max="100" onchange="rangevalue.value=value"/>
                         <output id="rangevalue">50</output>
                     </div>
                     <input type="number" name="time" id="time" placeholder="Number Of Hours">
-                    <svg onclick="submitForm()" class="app-sidebar-link" style="border:none;cursor:pointer"xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-                    </svg>
+                    <div id="loader-submit">
+                      <svg onclick="submitForm()" class="app-sidebar-link" style="border:none;cursor:pointer"xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                      </svg>
+                      <!-- <div class="loader"></div> -->
+                    </div>
                 </form>
           </div>
         </div>

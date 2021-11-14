@@ -24,10 +24,16 @@ const userSchema=new Schema({
         type:Boolean
     },
     set:{
-        
             type:mongoose.Types.ObjectId,
             ref:'set'
-        
+    },
+    plan:{
+        type:String,
+        default:'free'
+    },
+    remainingDays:{
+        type:Number,
+        default:7
     },
     activities:[
         {

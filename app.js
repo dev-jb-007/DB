@@ -2,7 +2,9 @@ const express=require('express');
 const path=require('path');
 const http=require('http');
 const ejs=require('ejs');
+const cookieParser=require('cookie-parser');
 const app=express();
+// const isAuth=require('./config/isAuth');
 const setName=require('./models/setNames');
 require('./config/mongoose');
 const isAuth=require('./config/isAuth');
@@ -14,7 +16,7 @@ const adminRouter=require('./routers/adminRouter');
 //middleswares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cookieParser());
 
 //Serving static files
 app.use(express.static(path.join(__dirname, 'static')));
@@ -27,6 +29,15 @@ app.set('views', path.join(__dirname, 'templates/views'));
 app.get('/',(req,res)=>{
     res.render('homepage');
 });
+app.post('/',isAuth,async (req,res,next)=>{
+    try{
+        res.send({status:'Success'});
+    }
+    catch(err)
+    {
+        next(err);
+    }
+})
 app.get('/signup',(req,res)=>{
     res.render('signup');
 });

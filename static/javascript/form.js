@@ -7,6 +7,7 @@
 // }
 // updateLinks();
 
+
 async function submitForm(){
     var set=new Object();
     
@@ -14,7 +15,8 @@ async function submitForm(){
     
     set.strength=document.getElementById('strength').value;
     set.time=document.getElementById('time').value;
-    
+    let loaderDiv=document.getElementById('loader-submit');
+    loaderDiv.innerHTML=`<div class="loader"></div>`;
     console.log(set);
     // let temp=new Array;
     let multipleOptionSelect = document.querySelector('select[multiple]');
@@ -31,7 +33,7 @@ async function submitForm(){
             // i++;
         }
     })
-    // set.push(temp);
+    // set.push(temp)
     set.addiction=selectedAddiction;
     console.log(selectedAddiction);
     await fetch('/user/dashboard/form',{
@@ -41,6 +43,7 @@ async function submitForm(){
         },
         body:JSON.stringify(set)
     })
+    window.location.href='/user/dashboard';
 }
 
 
