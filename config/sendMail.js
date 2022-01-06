@@ -7,7 +7,7 @@ const sendActivityEmail=(email,activity,progress)=>
 sgMail
   .send({
     to: email, // Change to your recipient
-    from: 'homestore8907@gmail.com', // Change to your verified sender
+    from: 'dbcentre001@gmail.com', // Change to your verified sender
     subject: 'Pending Activity',
     text: `Come On!!!! You are only ${100-progress}% away from Completing ${activity}`,
   })

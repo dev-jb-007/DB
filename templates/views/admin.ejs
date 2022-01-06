@@ -13,7 +13,7 @@
     <!-- <link rel="stylesheet" href="/css/dashboard.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" />
-
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
     <link rel="stylesheet" href="/css/admin.css">
     <link rel="stylesheet" href="/css/navbar.css">
@@ -46,14 +46,22 @@
         <div style="width: 80%;height: 3px;background-color: black;"></div>
         <div id="add-activity">
             <h2 style="width: max-content;font-size: 2em;">Create Activity</h2>
-            <input type="text" name="name" id="activity-name" placeholder="Activity Name:">
-            <input type="text" style="height: 120px;" name="description" id="activity-description" placeholder="Activity Description:">
-            
+            <input type="text" class="st-input" name="name" id="activity-name" placeholder="Activity Name:">
+            <input type="text" class="st-input" style="height: 120px;" name="description" id="activity-description" placeholder="Activity Description:">
+            <form id="video-form" action="/docter/uploadVideo" method="POST" enctype="multipart/form-data">
+                <input type="file" name="video" id="video-input">
+                <label for="video-input">Select Video To Upload</label>
+                <input type="submit" value="Upload">
+            </form>
+              <input type="number"class="st-input" name="count" id="count" placeholder="Count:">
+              
               <div id="replacingloader">
                 <svg onclick="postActivity()" class="app-sidebar-link" style="border:none;cursor:pointer;margin:10px auto 10px  auto"xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
                   </svg>
               </div>
+              
+
         </div>
     </section>
     <div class="projects-section" style="overflow: hidden;">

@@ -12,6 +12,9 @@ const activitySchema=new Schema({
     docter:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'user'
+    },
+    video:{
+        type:Buffer,
     }
 });
 module.exports=mongoose.model('activity',activitySchema);

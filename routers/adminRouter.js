@@ -5,11 +5,62 @@ const setName=require('../models/setNames');
 const isAuth=require('../config/isAuth');
 const isDocter=require('../config/isDocter');
 const Set=require('../models/sets');
+const multer=require('multer');
+const Video=require('../models/video');
+
+
 const cookieParser=require('cookie-parser');
 router.use(cookieParser());
 router.use(express.json());
 router.use(express.urlencoded({extended:true}));
 
+const videoUpload = multer({
+    limits: {
+    fileSize: 10000000 // 10000000 Bytes = 10 MB
+    },
+    fileFilter(req, file, cb) {
+      // upload only mp4 and mkv format
+      if (!file.originalname.match(/\.(mp4|MPEG-4|mkv)$/)) { 
+         return cb(new Error('Please upload a video'))
+      }
+      cb(undefined, true)
+   }
+})
+
+router.post('/uploadVideo/:id', videoUpload.single('video'),async (req, res,next) => {
+    try{
+        let ac=await Activity.findById(req.params.id);
+        const video=new Video({file:req.file.buffer});
+        console.log(video);
+        ac.video=video.file;
+        // console.log('hello');
+        // res.send(req.file)
+        await video.save();
+        await ac.save();
+        // console.log(video);
+        // console.log(video._id);
+        res.send({id:video._id});
+    }
+    catch(err)
+    {
+        next(err);
+    }
+ });
+router.get('/getVideo/:id',async(req,res,next)=>{
+    console.log("Hi");
+    res.set('Content-Type', 'video/mp4');
+    let ac=await Activity.findById(req.params.id);
+    res.send(ac.video);
+})
+router.get('/video',isAuth,async(req,res,next)=>{
+    try{
+        res.render('video');
+    }
+    catch(err)
+    {
+        next(err);
+    }
+})
 router.route('/set')
     .post(isAuth,isDocter,async (req,res,next)=>{
         try{
@@ -48,8 +99,9 @@ router.route('/activities')
             let ac=new Activity(req.body);
             await ac.save();
             let obj=await Activity.findById(ac._id).populate('docter','name');
-            console.log(obj+'check this log');
-            res.send(obj);
+            // console.log(obj+'check this log');
+            // res.redirect(`/video/${ac._id}`)
+            res.send({id:ac._id});
         }
         catch(err)
         {

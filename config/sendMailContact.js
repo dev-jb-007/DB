@@ -7,7 +7,7 @@ const sendActivityEmail=(email)=>
 sgMail
   .send({
     to: email, // Change to your recipient
-    from: 'homestore8907@gmail.com', // Change to your verified sender
+    from: 'dbcentre001@gmail.com', // Change to your verified sender
     subject: 'Your Query',
     text: `We recieved your message and will get to you as soon as possible!!!`,
   })

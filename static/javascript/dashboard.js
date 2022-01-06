@@ -107,11 +107,12 @@ let html=``;
     <p class="box-progress-header">Progress</p>
 
     
-    <div class="slider">
+    <div class="slider" style="display: flex; justify-content: space-around;">
           <input type = "range" id="strength" min="0" max="100" value='${element.progress}'  onclick="valueChange('${element.activity._id}',this.value,this)" onchange="rangevalue.value=${element.progress}"/>
           <output id="rangevalue">${element.progress}%</output>
     
     </div>
+    <div style="display: flex; justify-content: space-around;"><a href="/"<i class="fas fa-play"></i></a></div>
     </div>
     <div class="project-box-footer">
       <input style="width:40px;height:40px;background-color:transparent;border:none" type="number" placeholder="0"></input>
@@ -256,3 +257,5 @@ let html=``;
 document.getElementById("search-input").addEventListener("keyup", () => {
   getSearchResults(document.getElementById("search-input").value);
 });
+
+// leaderboard javascript

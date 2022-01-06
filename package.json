@@ -1,7 +1,7 @@
 {
-  "name": "db",
+  "name": "dotslash",
   "version": "1.0.0",
-  "description": "",
+  "description": "As you know due to covid-19 pandemic all the people where inside home for a long time and due to that people many people became very addictive towards electronic gadgets such as mobiles, computers, etc, and due to this their mental health is affecting a lot. Due to no moment of body, their physical activity was also stopped. And its very dangerous as many of our youths are there in this mobile addiction. And due to this many of the people have started living in the virtual world.>>Solution>>So here we came up with the solution that why not create a dedicated platform where not only addiction related to mobile but every addiction  people who are really wanted to remove addiction can come here. We have created an platform named \"DBCentre\" where we are dealing with the top certified doctors and psychiatrist who can give various activities to addicted people for 1 month and by doing those activities theres a high chance that addiction of people will be removed.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/dev-jb-007/DB.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "dev",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dev-jb-007/DB/issues"
@@ -24,9 +24,10 @@
     "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
-    "express": "^4.17.1",
+    "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.12",
+    "multer": "^1.4.4",
     "node-schedule": "^2.0.0",
     "stripe": "^8.188.0"
   }

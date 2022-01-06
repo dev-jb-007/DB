@@ -3,6 +3,7 @@ const path=require('path');
 const http=require('http');
 const ejs=require('ejs');
 const cookieParser=require('cookie-parser');
+const multer=require('multer');
 const app=express();
 // const isAuth=require('./config/isAuth');
 const setName=require('./models/setNames');
@@ -14,17 +15,17 @@ const isDocter=require('./config/isDocter');
 const server=http.createServer(app);
 const userRouter=require('./routers/userRouter');
 const adminRouter=require('./routers/adminRouter');
-
+const Video=require('./models/video');
 // Dev
 //middleswares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+
+
 //Serving static files
 app.use(express.static(path.join(__dirname, 'static')));
-
-
 //View Engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'templates/views'));
