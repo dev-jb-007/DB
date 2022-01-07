@@ -83,8 +83,8 @@ let selectedAc=new Array;
 
    user.activities.forEach((element) => {
         // console.log(element.activity);
+        console.log(element);
       localhtml += `
-
 <div class="project-box-wrapper">
     <div class="project-box" style="background-color: #fee4cb;">
         <div class="project-box-header">
@@ -112,7 +112,11 @@ let selectedAc=new Array;
           <output id="rangevalue">${element.progress}%</output>
     
     </div>
-    <div style="display: flex; justify-content: space-around;"><a target="_blank" href="/docter/getVideo/${element._id}"<i class="fas fa-play"></i></a></div>
+    <div style="display: flex; justify-content: space-around;">
+    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+    <a target="_blank" href="/docter/getVideo/${element._id}"<i class="fas fa-play"></i></a>
+  </button>
+    </div>
     </div>
     <div class="project-box-footer">
       <input style="width:40px;height:40px;background-color:transparent;border:none" type="number" placeholder="0"></input>

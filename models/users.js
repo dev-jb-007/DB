@@ -47,6 +47,10 @@ const userSchema=new Schema({
             },
             remainder:{
                 type:Date
+            },
+            remainderTime:{
+                type:Number,
+                default:0
             }
         } 
     ],
@@ -55,7 +59,30 @@ const userSchema=new Schema({
             type:String,
             required:true
         }
-    }]
+    }],
+    healthData:{
+        height:{
+            type:Number
+        },
+        weight:{
+            type:Number
+        },
+        BOD:{
+            type:Number
+        },
+        workoutTime:{
+            type:Number
+        },
+        addiction:{
+            type:Boolean
+        },
+        cholesterol:{
+            type:Number
+        },
+        bloodPreasure:{
+            type:Number
+        }
+    }
 })
 userSchema.methods.createAuthToken=async function(){
     const user=this;

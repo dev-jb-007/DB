@@ -94,6 +94,8 @@ router.route("/dashboard/sendMail").post(isAuth, async (req, res, next) => {
   try {
     let user = await User.findById(req.user._id).populate("activities");
     console.log(req.body);
+    user.activity.remainderTime=req.body.time;
+    await user.save();
     let ac = user.activities;
     console.log(ac);
     for (let i = 0; i < ac.length; i++) {
@@ -121,6 +123,8 @@ router.route("/dashboard/sendMail").post(isAuth, async (req, res, next) => {
 router.route("/dashboard/cancelMail").post(isAuth, async (req, res, next) => {
   try {
     let user = await User.findById(req.user._id).populate("activities");
+    user.activity.remainderTime=0;
+    await user.save();
     let ac = user.activities;
     for (let i = 0; i < ac.length; i++) {
       if (ac[i].activity.toString() === req.body.id) {
@@ -173,7 +177,10 @@ router
   })
   .post(isAuth, async (req, res, next) => {
     try {
-      let set = await Set.findOne(req.body);
+      let userSet=req.body;
+      include=false;
+      let set=await Set.find({bmi:{start:{$lte:req.body.bmi},end:{$gte:req.body.bmi}},BOD:{start:{$lte:req.body.BOD},end:{$gte:req.body.BOD}},workoutTime:{start:{$lte:req.body.workoutTime},end:{$gte:req.body.workoutTime}},
+        cholesterol:{start:{$lte:req.body.cholesterol},end:{$gte:req.body.cholesterol}},bloodPreasure:{start:{$lte:req.body.bloodPreasure},end:{$gte:req.body.bloodPreasure}},addiction:req.body.addiction});
       let user = await User.findById(req.user._id);
       user.set = set._id;
       let arr = new Array();

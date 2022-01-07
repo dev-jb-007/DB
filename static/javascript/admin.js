@@ -201,12 +201,13 @@ async function postActivity() {
   let description = document.getElementById("activity-description").value;
   let count=document.getElementById("count").value;
   let time=document.getElementById("time").value;
+  let point=document.getElementById("point").value;
   let respone=await fetch("/docter/activities", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name, description,count,time }),
+    body: JSON.stringify({ name, description,count,time,point }),
   });
   let answer=await respone.json();
   console.log(answer);
@@ -220,26 +221,70 @@ async function postActivity() {
 async function postSet() {
 
   var newSet = Object();
-  newSet.activity=set.activity;
-  newSet.strength = parseInt(document.getElementById("strength").value);
-  newSet.time = parseInt(document.getElementById("time").value);
-  let multipleOptionSelect = document.querySelector('select[multiple]');
-    let selectedAddiction=new Array;
-    Array.from(multipleOptionSelect).forEach(item=>{
-        if(item.selected==true)
-        {
-            set.addiction=item.value;
-            selectedAddiction.push(item.value);
-        }
-    })
-    newSet.addiction=selectedAddiction;
-  console.log(newSet);
+  // newSet.activity=set.activity;
+  let bmi={
+    start:0,
+    end:0
+  }
+  let bod={
+    start:0,
+    end:0
+  }
+  let bloodPressure={
+    start:0,
+    end:0
+
+  }
+  let cholesterol={
+    start:0,
+    end:0
+  }
+  let workoutTime={
+    start:0,
+    end:0
+  }
+  console.log(document.getElementById("bmi").value);
+  bmi.start= parseInt(document.getElementById("bmi").value.split('-')[0]);
+  bmi.end= parseInt(document.getElementById("bmi").value.split('-')[1]);
+  bod.start= parseInt(document.getElementById("bod").value.split('-')[0]);
+  bod.end= parseInt(document.getElementById("bod").value.split('-')[1]);
+  bloodPressure.start= parseInt(document.getElementById("BloodPressure").value.split('-')[0]);
+  bloodPressure.end= parseInt(document.getElementById("BloodPressure").value.split('-')[1]);
+  cholesterol.start= parseInt(document.getElementById("Cholesterol").value.split('-')[0]);
+  cholesterol.end= parseInt(document.getElementById("Cholesterol").value.split('-')[1]);
+  workoutTime.start= parseInt(document.getElementById("WorkoutTime").value.split('-')[0]);
+  workoutTime.end= parseInt(document.getElementById("WorkoutTime").value.split('-')[1]);
+  let addiction;
+  if(document.getElementById("Addiction").value==1)
+  {
+    addiction=true;
+  }
+  else{
+    addiction:false;
+  }
+  let Cset={
+    addiction,workoutTime,cholesterol,bloodPressure,bod,bmi
+  }
+  Cset.activity=set.activity;
+  console.log(Cset);
+  // newSet.time = parseInt(document.getElementById("time").value);
+  // let multipleOptionSelect = document.querySelector('select[multiple]');
+  //   let selectedAddiction=new Array;
+  //   Array.from(multipleOptionSelect).forEach(item=>{
+  //       if(item.selected==true)
+  //       {
+  //           set.addiction=item.value;
+  //           selectedAddiction.push(item.value);
+  //       }
+  //   })
+  //   newSet.addiction=selectedAddiction;
+  // console.log(newSet);
   const buffer = await fetch("/docter/set", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(newSet),
+    body: JSON.stringify(Cset),
   });
   const ans = await buffer.json();
 

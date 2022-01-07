@@ -2,16 +2,48 @@ const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 
 const setSchema=new Schema({
-    addiction:[
-        {
-            type:String
+    bmi:{
+        start:{
+            type:Number
+        },
+        end:{
+            type:Number
         }
-    ],
-    strength:{
-        type:Number
     },
-    time:{
-        type:Number
+    bod:{
+        start:{
+            type:Number
+        },
+        end:{
+            type:Number
+        }
+    },
+    workoutTime:{
+        start:{
+            type:Number
+        },
+        end:{
+            type:Number
+        }
+    },
+    addiction:{
+        type:Boolean
+    },
+    cholesterol:{
+        start:{
+            type:Number
+        },
+        end:{
+            type:Number
+        }
+    },
+    bloodPressure:{
+        start:{
+            type:Number
+        },
+        end:{
+            type:Number
+        }
     },
     activity:[
         {

@@ -122,6 +122,14 @@ form {
   justify-content: space-evenly;
   align-items: center;
 }
+.st-input{
+  width: 30%;
+  background-color: #f3f6fd;
+  height: 40px;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
 form #addiction {
   width: 50%;
   background-color: #f3f6fd;

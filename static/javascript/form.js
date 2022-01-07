@@ -13,29 +13,37 @@ async function submitForm(){
     
     // set.addiction=document.getElementById('addiction')
     
-    set.strength=document.getElementById('strength').value;
-    set.time=document.getElementById('time').value;
+    set.height=document.getElementById('height').value;
+    set.weight=document.getElementById('weight').value;
+    set.BOD=document.getElementById('BOD').value;
+    set.BOD=document.getElementById('BOD').value;
+    set.cholesterol=document.getElementById('cholesterol').value;
+    set.cholesterol=document.getElementById('cholesterol').value;
+    set.cholesterol=document.getElementById('cholesterol').value;
+    set.addiction=document.getElementById('flexSwitchCheckDefault').checked;
+    // console.log(set);
+    // flexSwitchCheckDefault
     let loaderDiv=document.getElementById('loader-submit');
     loaderDiv.innerHTML=`<div class="loader"></div>`;
-    console.log(set);
-    // let temp=new Array;
-    let multipleOptionSelect = document.querySelector('select[multiple]');
-    let selectedAddiction=new Array;
-    Array.from(multipleOptionSelect).forEach(item=>{
-        // console.log(item);
-        if(item.selected==true)
-        {
-            set.addiction=item.value;
-            selectedAddiction.push(item.value);
-            // console.log(item.value);
-            // temp.push(item.value);
-            // console.log("hi");
-            // i++;
-        }
-    })
-    // set.push(temp)
-    set.addiction=selectedAddiction;
-    console.log(selectedAddiction);
+    // console.log(set);
+    // // let temp=new Array;
+    // let multipleOptionSelect = document.querySelector('select[multiple]');
+    // let selectedAddiction=new Array;
+    // Array.from(multipleOptionSelect).forEach(item=>{
+    //     // console.log(item);
+    //     if(item.selected==true)
+    //     {
+    //         set.addiction=item.value;
+    //         selectedAddiction.push(item.value);
+    //         // console.log(item.value);
+    //         // temp.push(item.value);
+    //         // console.log("hi");
+    //         // i++;
+    //     }
+    // })
+    // // set.push(temp)
+    // set.addiction=selectedAddiction;
+    // console.log(selectedAddiction);
     await fetch('/user/dashboard/form',{
         method:'POST',
         headers:{

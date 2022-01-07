@@ -69,6 +69,7 @@ router.route('/set')
             // let name=await setName.find({name:req.body})
             // console.log(req.body);
             let newSet=new Set(req.body);
+            console.log(newSet);
             // console.log(newSet);
             await newSet.save();
             let obj=await Set.findById(newSet._id).populate('activity');

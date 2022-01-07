@@ -31,18 +31,17 @@ async function main(email,message) {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: "onlyjeet31@gmail.com", // generated ethereal user
-      pass: "onlyjeet31*", // generated ethereal password
+      user: "dbcentre001@gmail.com", // generated ethereal user
+      pass: "12345678@dbj", // generated ethereal password
     },
   });
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: 'onlyjeet31@gmail.com', // sender address
-    to: "devpatel8907@gmail.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: message
-  });
+    from: 'dbcentre001@gmail.com', // sender address
+    to: email, // list of receivers
+    subject: "Your Progress", // Subject line
+    text: message  });
 
   console.log("Message sent: %s", info.messageId);
   // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
@@ -52,5 +51,5 @@ async function main(email,message) {
   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 }
 
-main().catch(console.error);
+// main().catch(console.error);
 module.exports=main;

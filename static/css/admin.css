@@ -1153,6 +1153,12 @@ html, body {
   height: max-content;
 }
 .pagination{
-  width: max-content;
-  margin: auto;
+  display: flex;
+    padding-left: 0;
+    width: 200px;
+    flex-direction: row;
+    align-items: center;
+    list-style: none;
+    justify-content: space-evenly;
+    margin: auto;
 }
