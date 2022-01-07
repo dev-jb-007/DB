@@ -46,7 +46,7 @@ router.post('/uploadVideo/:id', videoUpload.single('video'),async (req, res,next
         next(err);
     }
  });
-router.get('/getVideo/:id',async(req,res,next)=>{
+router.get('/getVideo/:id',isAuth,async(req,res,next)=>{
     console.log("Hi");
     res.set('Content-Type', 'video/mp4');
     let ac=await Activity.findById(req.params.id);
@@ -80,11 +80,24 @@ router.route('/set')
             next(err);
         }
     })
+router.post('/singleActivity',isAuth,isDocter,async (req,res,next)=>{
+    try{
+        let ac=await Activity.findById(req.body.id,['name','docter','description','count']);
+        res.send(ac);
+    }
+    catch(err)
+    {
+        next(err);
+    }
+})
 router.route('/activities')
     .get(isAuth,isDocter,async (req,res,next)=>{
         try{
             let ac=new Array;
-            ac=await Activity.find().populate('docter','name');
+            console.log("hello");
+            ac=await Activity.find({},['name','docter','description','count']).populate('docter','name').limit(9).skip(req.query.skip*9);
+            console.log(ac);
+            // console.log('he')
             res.send(ac);
         }
         catch(err)

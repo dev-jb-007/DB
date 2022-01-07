@@ -140,7 +140,7 @@ router.route("/dashboard/cancelMail").post(isAuth, async (req, res, next) => {
 });
 router.route("/info").get(isAuth, async (req, res, next) => {
   try {
-    let user = await User.findById(req.user._id).populate({
+    let user = await User.findById(req.user._id,['name','docter','description','count']).populate({
       path: "activities",
       populate: { path: "activity", populate: "docter" },
     });

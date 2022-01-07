@@ -1149,3 +1149,10 @@ html, body {
   height: 200px;
   margin: 0px 0px 0px 0px;
 }
+#selectedAc{
+  height: max-content;
+}
+.pagination{
+  width: max-content;
+  margin: auto;
+}

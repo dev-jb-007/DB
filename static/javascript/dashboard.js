@@ -9,7 +9,7 @@ async function getUserInfo(){
     liveData();
 }
 let html=``;
-
+let selectedAc=new Array;
  async function valueChange(id,value,element){
       let onchangevalue=Object();
       onchangevalue.id=id;
@@ -112,7 +112,7 @@ let html=``;
           <output id="rangevalue">${element.progress}%</output>
     
     </div>
-    <div style="display: flex; justify-content: space-around;"><a href="/"<i class="fas fa-play"></i></a></div>
+    <div style="display: flex; justify-content: space-around;"><a target="_blank" href="/docter/getVideo/${element._id}"<i class="fas fa-play"></i></a></div>
     </div>
     <div class="project-box-footer">
       <input style="width:40px;height:40px;background-color:transparent;border:none" type="number" placeholder="0"></input>

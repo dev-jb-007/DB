@@ -17,6 +17,14 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
     <link rel="stylesheet" href="/css/admin.css">
     <link rel="stylesheet" href="/css/navbar.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <title>Admin</title>
 </head>
 
@@ -53,8 +61,8 @@
                 <label for="video-input">Select Video To Upload</label>
                 <input type="submit" value="Upload">
             </form>
-              <input type="number"class="st-input" name="count" id="count" placeholder="Count:">
-              
+              <input type="number" class="st-input" name="count" id="count" placeholder="Count:">
+              <input type="number" class="st-input" name="time" placeholder="Time:" id="time">
               <div id="replacingloader">
                 <svg onclick="postActivity()" class="app-sidebar-link" style="border:none;cursor:pointer;margin:10px auto 10px  auto"xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
@@ -64,7 +72,7 @@
 
         </div>
     </section>
-    <div class="projects-section" style="overflow: hidden;">
+    <div class="projects-section" id="total-activities" style="overflow: hidden;">
         <div class="projects-section-header">
             <p>Total Activities</p>
         </div>
@@ -91,9 +99,61 @@
         <div class="project-boxes jsGridView" id="project-boxes">
 
         </div>
+        
+    </div>
+    <div class="pagination">
+      <i class="fas fa-arrow-left" onclick="prevPage()"></i>
+      <i class="fas fa-arrow-right" onclick="nextPage()"></i>
+    </div>
+    <div class="projects-section" id="selectedAc" style="overflow: hidden;">
+        <div class="projects-section-header">
+            <p>Selected Activities</p>
+        </div>
+        <div class="search-wrapper">
+            <input class="search-input" id="search-input" type="text" placeholder="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search"
+                viewBox="0 0 24 24">
+                <defs></defs>
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="M21 21l-4.35-4.35"></path>
+            </svg>
+        </div>
+        <div class="projects-section-line">
+            <div class="projects-status">
+                <div class="item-status">
+                        <!-- <span class="status-number">62</span>
+                        <span class="status-type">Total Projects</span> -->
+                    
+                </div>
+            </div>
+
+        </div>
+        <div class="project-boxes jsGridView" id="project-boxes">
+
+        </div>
+        
     </div>
     </div>
     </div>
+    <!-- <nav aria-label="...">
+        <ul class="pagination">
+          <li class="page-item disabled">
+            <span class="page-link" onclick="prevPage()">Previous</span>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active">
+            <span class="page-link">
+              2
+              <span class="sr-only">(current)</span>
+            </span>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" onclick="nextPage()">Next</a>
+          </li>
+        </ul>
+      </nav> -->
     <%- include ('../partials/footer.ejs') %>
 </body>
 <script src="/javascript/admin.js"></script>

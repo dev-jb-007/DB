@@ -15,6 +15,9 @@ const activitySchema=new Schema({
     },
     video:{
         type:Buffer,
+    },
+    point:{
+        type:Number
     }
 });
 module.exports=mongoose.model('activity',activitySchema);

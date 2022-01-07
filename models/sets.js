@@ -22,7 +22,17 @@ const setSchema=new Schema({
     admin:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'user'
-    }
+    },
+    leaderboard:[
+        {
+            userid:{
+                type:String
+            },
+            rank:{
+                type:Number
+            }
+        }
+    ]
 })
 
 module.exports=mongoose.model('set',setSchema);
