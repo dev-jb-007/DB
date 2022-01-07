@@ -107,7 +107,7 @@ router.route("/dashboard/sendMail").post(isAuth, async (req, res, next) => {
         string = "*/" + req.body.time + " * * * * *";
         console.log(string);
         schedule.scheduleJob(jobName, string, () => {
-          sendMail(req.user.email, x.name, ac[i].progress);
+          sendMail(req.user.email,x.name).catch(console.error);
           // console.log('Send Mail');
         });
         break;
