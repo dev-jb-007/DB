@@ -83,7 +83,7 @@ router.route('/set')
     })
 router.post('/singleActivity',isAuth,isDocter,async (req,res,next)=>{
     try{
-        let ac=await Activity.findById(req.body.id,['name','docter','description','count']);
+        let ac=await Activity.findById(req.body.id,['name','docter','description','count']).populate('docter');
         res.send(ac);
     }
     catch(err)

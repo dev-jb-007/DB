@@ -13,14 +13,14 @@ async function submitForm(){
     
     // set.addiction=document.getElementById('addiction')
     
-    set.height=document.getElementById('height').value;
-    set.weight=document.getElementById('weight').value;
-    set.BOD=document.getElementById('BOD').value;
-    set.BOD=document.getElementById('BOD').value;
-    set.cholesterol=document.getElementById('cholesterol').value;
-    set.cholesterol=document.getElementById('cholesterol').value;
-    set.cholesterol=document.getElementById('cholesterol').value;
+    let height=document.getElementById('height').value;
+    let weight=document.getElementById('weight').value;
+    set.bmi=(weight)/(height*height);
+    set.bod=parseInt(document.getElementById('BOD').value);
+    set.bloodPressure=parseInt(document.getElementById('blood-pressure').value);
+    set.cholesterol=parseInt(document.getElementById('cholesterol').value);
     set.addiction=document.getElementById('flexSwitchCheckDefault').checked;
+    set.workoutTime=parseInt(document.getElementById('workoutTime').value);
     // console.log(set);
     // flexSwitchCheckDefault
     let loaderDiv=document.getElementById('loader-submit');
@@ -44,6 +44,7 @@ async function submitForm(){
     // // set.push(temp)
     // set.addiction=selectedAddiction;
     // console.log(selectedAddiction);
+    console.log(set);
     await fetch('/user/dashboard/form',{
         method:'POST',
         headers:{

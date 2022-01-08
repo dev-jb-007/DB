@@ -84,6 +84,11 @@ let selectedAc=new Array;
    user.activities.forEach((element) => {
         // console.log(element.activity);
         console.log(element);
+        string='';
+        if(element.remainderTime>0)
+        {
+          string='checked';
+        }
       localhtml += `
 <div class="project-box-wrapper">
     <div class="project-box" style="background-color: #fee4cb;">
@@ -119,9 +124,9 @@ let selectedAc=new Array;
     </div>
     </div>
     <div class="project-box-footer">
-      <input style="width:40px;height:40px;background-color:transparent;border:none" type="number" placeholder="0"></input>
+      <input style="width:40px;height:40px;background-color:transparent;border:none" type="number" placeholder="0" value="${element.remainderTime}"></input>
       <div class="form-check form-switch" style="cursor:pointer">
-        <input class="form-check-input" type="checkbox" role="switch" onclick="Reminder(this,'${element.activity._id}')" id="flexSwitchCheckDefault">
+        <input class="form-check-input" type="checkbox" role="switch" ${string} onclick="Reminder(this,'${element.activity._id}')" id="flexSwitchCheckDefault">
         <label class="form-check-label" for="flexSwitchCheckDefault"></label>
       </div>
     <div class="days-left" style="color: #ff942e;">

@@ -15,6 +15,7 @@ const isDocter=require('./config/isDocter');
 const server=http.createServer(app);
 const userRouter=require('./routers/userRouter');
 const adminRouter=require('./routers/adminRouter');
+const sendMail=require('./config/sendMail');
 const Video=require('./models/video');
 // Dev
 //middleswares
@@ -49,7 +50,7 @@ app.post('/contact',async(req,res)=>{
     try{
         let query=new Query(req.body);
         await query.save();
-        sendMailContact(req.body.email);
+        sendMail(req.body.email);
         res.send({status:'done'});
     }
     catch(err)

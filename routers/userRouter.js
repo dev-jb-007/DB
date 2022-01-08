@@ -94,14 +94,16 @@ router.route("/dashboard/sendMail").post(isAuth, async (req, res, next) => {
   try {
     let user = await User.findById(req.user._id).populate("activities");
     console.log(req.body);
-    user.activity.remainderTime=req.body.time;
-    await user.save();
+    console.log('hello');
+    console.log(user);
+    // await user.save();
     let ac = user.activities;
+    console.log(ac);
     console.log(ac);
     for (let i = 0; i < ac.length; i++) {
       if (ac[i].activity.toString() === req.body.id) {
         // console.log('Hi');
-        ac[i].remainder = req.body.time;
+        ac[i].remainderTime = req.body.time;
         let string = "*/"+req.body.time+ " * * * * *";
         // console.log(string);
         let x = await Activity.findById(ac[i].activity.toString(), "name");
@@ -115,6 +117,8 @@ router.route("/dashboard/sendMail").post(isAuth, async (req, res, next) => {
         break;
       }
     }
+    user.activities=ac;
+    await user.save();
     res.send({ status: "Done" });
   } catch (err) {
     next(err);
@@ -123,12 +127,11 @@ router.route("/dashboard/sendMail").post(isAuth, async (req, res, next) => {
 router.route("/dashboard/cancelMail").post(isAuth, async (req, res, next) => {
   try {
     let user = await User.findById(req.user._id).populate("activities");
-    user.activity.remainderTime=0;
-    await user.save();
+    
     let ac = user.activities;
     for (let i = 0; i < ac.length; i++) {
       if (ac[i].activity.toString() === req.body.id) {
-        ac[i].remainder = req.body.time;
+        ac[i].remainderTime =0;
         let jobName = "remainder" + ac[i].activity.toString();
         let job = schedule.scheduledJobs[jobName];
         if (job) {
@@ -137,6 +140,8 @@ router.route("/dashboard/cancelMail").post(isAuth, async (req, res, next) => {
         break;
       }
     }
+    user.activities=ac;
+    await user.save();
     res.send({ status: "Done" });
   } catch (err) {
     next(err);
@@ -179,8 +184,58 @@ router
     try {
       let userSet=req.body;
       include=false;
-      let set=await Set.find({bmi:{start:{$lte:req.body.bmi},end:{$gte:req.body.bmi}},BOD:{start:{$lte:req.body.BOD},end:{$gte:req.body.BOD}},workoutTime:{start:{$lte:req.body.workoutTime},end:{$gte:req.body.workoutTime}},
-        cholesterol:{start:{$lte:req.body.cholesterol},end:{$gte:req.body.cholesterol}},bloodPreasure:{start:{$lte:req.body.bloodPreasure},end:{$gte:req.body.bloodPreasure}},addiction:req.body.addiction});
+      // let set=await Set.find({bmi:{start:{$lte:req.body.bmi},end:{$gte:req.body.bmi}},bod:{start:{$lte:req.body.bod},end:{$gte:req.body.bod}},workoutTime:{start:{$lte:req.body.workoutTime},end:{$gte:req.body.workoutTime}},
+      //   cholesterol:{start:{$lte:req.body.cholesterol},end:{$gte:req.body.cholesterol}},bloodPreasure:{start:{$lte:req.body.bloodPreasure},end:{$gte:req.body.bloodPreasure}},addiction:req.body.addiction});
+      //   console.log(set);
+      let sets=await Set.find({},['bmi','workoutTime','cholesterol','bloodPressure','addiction','bod']);
+      let set;
+      console.log(req.body);
+      sets.forEach(async (ele)=>{
+        ct=0;
+        console.log(ele);
+        if(req.body.bmi>=ele.bmi.start&&req.body.bmi<=ele.bmi.end)
+        {
+          ct++;
+          console.log(ct);
+          console.log(1);
+        }
+        if(req.body.bod>=ele.bod.start&&req.body.bod<=ele.bod.end)
+        {
+          ct++;
+          console.log(ct);
+          console.log(2);
+        }
+        if(req.body.workoutTime>=ele.workoutTime.start&&req.body.workoutTime<=ele.workoutTime.end)
+        {
+          ct++;
+          console.log(ct);
+          console.log(3);
+        }
+        if(req.body.cholesterol>=ele.cholesterol.start&&req.body.cholesterol<=ele.cholesterol.end)
+        {
+          ct++;
+          console.log(ct);
+          console.log(4);
+        }
+        if(req.body.bloodPressure>=ele.bloodPressure.start&&req.body.bloodPressure<=ele.bloodPressure.end)
+        {
+          ct++;
+          console.log(ct);
+        }
+        if(req.body.addiction===ele.addiction)
+        {
+          ct++;
+          console.log(ct);
+        }
+        console.log(ct);
+        if(ct==6)
+        {
+          console.log('hi');
+          set=await Set.findById(ele._id);
+          console.log(set);
+        }
+      })
+      
       let user = await User.findById(req.user._id);
       user.set = set._id;
       let arr = new Array();
@@ -191,7 +246,9 @@ router
           remainder: 0,
         });
       });
+      console.log('hello');
       user.activities = arr;
+      console.log(user);
       await user.save();
       res.send({ status: "Done" });
     } catch (err) {
