@@ -63,6 +63,9 @@ const setSchema=new Schema({
             point:{
                 type:Number
             },
+            username:{
+                type:String
+            }
         }
     ]
 })

@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 const isAuth = require("../config/isAuth");
 const sendMail = require("../config/sendMail");
 const filter = require("../config/filter");
+const { route } = require("express/lib/application");
 const stripe = require('stripe')(process.env.SECRET_KEY_TEST);
 router.use(cookieParser());
 router.use(express.json());
@@ -65,19 +66,24 @@ router
     try {
       let user = await User.findById(req.user._id).populate("activities");
       let p=await Activity.findById(req.body.id,['point']);
+      console.log(p);
       let ac = user.activities;
       for (let i = 0; i < ac.length; i++) {
         if (ac[i].activity.toString() === req.body.id) {
           ac[i].progress = req.body.value;
           if(ac[i].progress==100&&(ac[i].flag==false))
           {
+            console.log('i m in 1');
             ac[i].flag=true;
             user.points+=(p.point);
+            await user.save();
           }
           else if(ac[i].progress!=100&&(ac[i].flag==true))
           {
+            console.log('i m in 2');
             ac[i].flag=false;
             user.points-=(p.point);
+            await user.save();
           }
           break;
         }
@@ -101,6 +107,17 @@ router
       next(err);
     }
   });
+router.get('/getLeaderBoard',isAuth,async (req,res,next)=>{
+  try{
+    let set=await Set.findById(req.user.set,['leaderboard']);
+    console.log(set);
+    res.send({set,point:req.user.points,user:req.user._id});
+  }
+  catch(err)
+  {
+    next(err);
+  }
+})
 router.route("/dashboard/reminder").post(isAuth, async (req, res, next) => {
   try {
   } catch (err) {
@@ -223,7 +240,8 @@ router
           set=await Set.findById(ele._id);
           set.leaderboard.push({
             userid:req.user._id,
-            point:0
+            point:0,
+            username:req.user.name
           })
           await set.save();
           let user = await User.findById(req.user._id);
@@ -237,6 +255,7 @@ router
             });
           });
           user.activities = arr;
+          user.points=0;
           await user.save();
           res.send({ status: "Done" });
           }

@@ -1217,6 +1217,18 @@ body {
 .the-most img {
   max-width: 100%;
 }
-#you{
+#you-1{
   border-top:2px solid white;
 }
+/* .you::before{
+  content:'5';
+} */
+/* #you-2{
+  position: relative;
+}
+#you-2 p{
+  position: absolute;
+  left: 10%;
+  bottom:50%;
+  transform: translateY(50%);
+} */
