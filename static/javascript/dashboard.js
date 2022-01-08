@@ -27,6 +27,7 @@ let selectedAc=new Array;
       })
       const ans=await buffer.json();
       console.log(ans);
+      getLeaderBoard();
  }
  function liveData(){
    var pending=0,inProgress=0,completed=0;
@@ -81,6 +82,9 @@ async function getLeaderBoard(){
   console.log(ans);
   let points=ans.point;
   len=leaderboard.length;
+  leaderboard.sort((a,b)=>{
+    return a.point-b.point;
+  });
   let html=`<h1>
   <svg class="ico-cup">
     <use xlink:href="#cup"></use>
