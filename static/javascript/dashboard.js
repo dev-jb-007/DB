@@ -120,6 +120,7 @@ async function getLeaderBoard(){
     </li>`
     html+=`</ol>`
   div.innerHTML=html;
+  document.getElementById('go').style.display='none';
   console.log(leaderboard);
 }
   function displayActivity(ac, x) {
