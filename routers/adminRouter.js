@@ -50,6 +50,7 @@ router.get('/getVideo/:id',isAuth,async(req,res,next)=>{
     console.log("Hi");
     res.set('Content-Type', 'video/mp4');
     let ac=await Activity.findById(req.params.id);
+    console.log(ac);
     res.send(ac.video);
 })
 router.get('/video',isAuth,async(req,res,next)=>{
