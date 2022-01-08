@@ -74,14 +74,21 @@ let selectedAc=new Array;
  getLeaderBoard();
 async function getLeaderBoard(){
   let buffer=await fetch('/user/getLeaderBoard');
-  let div=document.getElementById('leaderboard-ol');
+  let div=document.getElementById('leaderboard');
   let ans=await buffer.json();
   let leaderboard=ans.set.leaderboard;
   let userid=ans.user;
   console.log(ans);
   let points=ans.point;
   len=leaderboard.length;
-  let html='';
+  let html=`<h1>
+  <svg class="ico-cup">
+    <use xlink:href="#cup"></use>
+  </svg>
+  Most active Players
+</h1>
+<ol id="leaderboard-ol">`;
+
   console.log(leaderboard);
   let j=-1;
   
@@ -111,6 +118,7 @@ async function getLeaderBoard(){
       <mark>${leaderboard[j].username}/ Rank(${len-j})</mark>
       <small>${points}</small>
     </li>`
+    html+=`</ol>`
   div.innerHTML=html;
   console.log(leaderboard);
 }

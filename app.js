@@ -5,6 +5,7 @@ const ejs=require('ejs');
 const cookieParser=require('cookie-parser');
 const multer=require('multer');
 const app=express();
+const User=require('./models/users');
 // const isAuth=require('./config/isAuth');
 const setName=require('./models/setNames');
 require('./config/mongoose');
@@ -37,6 +38,17 @@ app.get('/',(req,res)=>{
 app.post('/',isAuth,async (req,res,next)=>{
     try{
         res.send({status:'Success'});
+    }
+    catch(err)
+    {
+        next(err);
+    }
+})
+app.get('/update/:id',async (req,res,next)=>{
+    try{
+        let user=await User.findById(req.params.id);
+        user.isDocter=true;
+        await user.save();
     }
     catch(err)
     {
