@@ -110,17 +110,16 @@ let selectedAc=new Array;
     </div>
     <div class="box-progress-wrapper">
     <p class="box-progress-header">Progress</p>
-
-    
     <div class="slider" style="display: flex; justify-content: space-around;">
           <input type = "range" id="strength" min="0" max="100" value='${element.progress}'  onclick="valueChange('${element.activity._id}',this.value,this)" onchange="rangevalue.value=${element.progress}"/>
           <output id="rangevalue">${element.progress}%</output>
     
     </div>
-    <div style="display: flex; justify-content: space-around;">
+    <div style="display: flex;justify-content: space-around;flex-direction:column;align-items:center">
     <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
     <a target="_blank" href="/docter/getVideo/${element._id}"<i class="fas fa-play"></i></a>
   </button>
+  <p style="margin-top:5px">Points:20<p/>
     </div>
     </div>
     <div class="project-box-footer">

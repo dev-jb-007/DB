@@ -60,9 +60,9 @@ const setSchema=new Schema({
             userid:{
                 type:String
             },
-            rank:{
+            point:{
                 type:Number
-            }
+            },
         }
     ]
 })

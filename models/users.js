@@ -51,6 +51,10 @@ const userSchema=new Schema({
             remainderTime:{
                 type:Number,
                 default:0
+            },
+            flag:{
+                type:Boolean,
+                default:false
             }
         } 
     ],
@@ -60,6 +64,10 @@ const userSchema=new Schema({
             required:true
         }
     }],
+    points:{
+        type:Number,
+        default:0
+    },
     healthData:{
         height:{
             type:Number

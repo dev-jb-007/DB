@@ -263,8 +263,8 @@ async function postSet() {
   {
     addiction=true;
   }
-  else{
-    addiction:false;
+  else if(document.getElementById("Addiction").value==0){
+    addiction=false;
   }
   let Cset={
     addiction,workoutTime,cholesterol,bloodPressure,bod,bmi
@@ -291,7 +291,7 @@ async function postSet() {
     body: JSON.stringify(Cset),
   });
   const ans = await buffer.json();
-
+  window.location.href='/';
 }
 function getSearchResults(value) {
     let div = document.getElementById("project-boxes");

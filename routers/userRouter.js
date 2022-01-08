@@ -20,7 +20,6 @@ router.route("/signup").post(async (req, res, next) => {
     let user = new User(req.body);
     let token = await user.createAuthToken();
     schedule.scheduleJob('plan-days','0 0 0 * * *',async ()=>{
-      console.log('Minus');
         user.remainingDays--;
         await user.save();
     })
@@ -37,7 +36,6 @@ router.route("/signup").post(async (req, res, next) => {
 router.route("/dashboard").get(isAuth, async (req, res, next) => {
   try {
     let user = req.user;
-    // console.log(user);
     res.render("dashboard", user);
   } catch (err) {
     next(err);
@@ -55,7 +53,6 @@ router.route("/update").post(isAuth, async (req, res, next) => {
     let newUser = await User.findByIdAndUpdate(req.user._id, req.body, {
       new: true,
     });
-    // console.log(newUser);
     await newUser.save();
     res.send({ status: "Done" });
   } catch (err) {
@@ -67,16 +64,37 @@ router
   .post(isAuth, async (req, res, next) => {
     try {
       let user = await User.findById(req.user._id).populate("activities");
-      console.log(req.body);
+      let p=await Activity.findById(req.body.id,['point']);
       let ac = user.activities;
-      console.log(ac);
       for (let i = 0; i < ac.length; i++) {
         if (ac[i].activity.toString() === req.body.id) {
           ac[i].progress = req.body.value;
+          if(ac[i].progress==100&&(ac[i].flag==false))
+          {
+            ac[i].flag=true;
+            user.points+=(p.point);
+          }
+          else if(ac[i].progress!=100&&(ac[i].flag==true))
+          {
+            ac[i].flag=false;
+            user.points-=(p.point);
+          }
           break;
         }
       }
       user.activities = ac;
+      let set=await Set.findById(user.set);
+      let leaderboard=set.leaderboard;
+      leaderboard.forEach(ele=>{
+        if(ele.userid===(user._id.toString()))
+        {
+          ele.point=user.points;
+        }
+      })
+      leaderboard.sort((a,b)=>{
+        return (a.point-b.point);
+      });
+      await set.save();
       await user.save();
       res.send({ status: "Done" });
     } catch (err) {
@@ -89,30 +107,19 @@ router.route("/dashboard/reminder").post(isAuth, async (req, res, next) => {
     next(err);
   }
 });
-
 router.route("/dashboard/sendMail").post(isAuth, async (req, res, next) => {
   try {
     let user = await User.findById(req.user._id).populate("activities");
-    console.log(req.body);
-    console.log('hello');
-    console.log(user);
-    // await user.save();
     let ac = user.activities;
-    console.log(ac);
-    console.log(ac);
     for (let i = 0; i < ac.length; i++) {
       if (ac[i].activity.toString() === req.body.id) {
-        // console.log('Hi');
         ac[i].remainderTime = req.body.time;
         let string = "*/"+req.body.time+ " * * * * *";
-        // console.log(string);
         let x = await Activity.findById(ac[i].activity.toString(), "name");
         let jobName = "remainder" + ac[i].activity.toString();
         string = "*/" + req.body.time + " * * * * *";
-        console.log(string);
         schedule.scheduleJob(jobName, string, () => {
           sendMail(req.user.email,x.name).catch(console.error);
-          // console.log('Send Mail');
         });
         break;
       }
@@ -174,7 +181,6 @@ router
       let arr = new Array();
       let x = await setName.find({});
       arr = await Set.find({}, "name");
-      // console.log(arr);
       res.render("form", { array: arr, name: req.user.name, x });
     } catch (err) {
       next(err);
@@ -184,73 +190,60 @@ router
     try {
       let userSet=req.body;
       include=false;
-      // let set=await Set.find({bmi:{start:{$lte:req.body.bmi},end:{$gte:req.body.bmi}},bod:{start:{$lte:req.body.bod},end:{$gte:req.body.bod}},workoutTime:{start:{$lte:req.body.workoutTime},end:{$gte:req.body.workoutTime}},
-      //   cholesterol:{start:{$lte:req.body.cholesterol},end:{$gte:req.body.cholesterol}},bloodPreasure:{start:{$lte:req.body.bloodPreasure},end:{$gte:req.body.bloodPreasure}},addiction:req.body.addiction});
-      //   console.log(set);
       let sets=await Set.find({},['bmi','workoutTime','cholesterol','bloodPressure','addiction','bod']);
       let set;
-      console.log(req.body);
       sets.forEach(async (ele)=>{
         ct=0;
-        console.log(ele);
         if(req.body.bmi>=ele.bmi.start&&req.body.bmi<=ele.bmi.end)
         {
           ct++;
-          console.log(ct);
-          console.log(1);
         }
         if(req.body.bod>=ele.bod.start&&req.body.bod<=ele.bod.end)
         {
           ct++;
-          console.log(ct);
-          console.log(2);
         }
         if(req.body.workoutTime>=ele.workoutTime.start&&req.body.workoutTime<=ele.workoutTime.end)
         {
           ct++;
-          console.log(ct);
-          console.log(3);
         }
         if(req.body.cholesterol>=ele.cholesterol.start&&req.body.cholesterol<=ele.cholesterol.end)
         {
           ct++;
-          console.log(ct);
-          console.log(4);
         }
         if(req.body.bloodPressure>=ele.bloodPressure.start&&req.body.bloodPressure<=ele.bloodPressure.end)
         {
           ct++;
-          console.log(ct);
         }
         if(req.body.addiction===ele.addiction)
         {
           ct++;
-          console.log(ct);
         }
-        console.log(ct);
         if(ct==6)
         {
-          console.log('hi');
           set=await Set.findById(ele._id);
-          console.log(set);
-        }
+          set.leaderboard.push({
+            userid:req.user._id,
+            point:0
+          })
+          await set.save();
+          let user = await User.findById(req.user._id);
+          user.set = set._id;
+          let arr = new Array();
+          set.activity.forEach((item) => {
+            arr.push({
+              activity: item._id,
+              progress: 0,
+              remainder: 0,
+            });
+          });
+          user.activities = arr;
+          await user.save();
+          res.send({ status: "Done" });
+          }
+          else{
+            let err=new Error('no Set found');
+          }
       })
-      
-      let user = await User.findById(req.user._id);
-      user.set = set._id;
-      let arr = new Array();
-      set.activity.forEach((item) => {
-        arr.push({
-          activity: item._id,
-          progress: 0,
-          remainder: 0,
-        });
-      });
-      console.log('hello');
-      user.activities = arr;
-      console.log(user);
-      await user.save();
-      res.send({ status: "Done" });
     } catch (err) {
       next(err);
     }
@@ -306,11 +299,9 @@ router.route("/dashboard/payment").get(isAuth, async (req, res, next) => {
 router
   .route("/pay")
   .get(isAuth, async (req, res, next) => {
-      console.log(req.query.plan);
     res.render("pay", { key: process.env.PUBLISHABLE_KEY,plan:req.query.plan });
   })
   .post(isAuth, async (req, res, next) => {
-    console.log(req.body);
     stripe.charges
       .create({
         source: req.body.stripeTokenId,
