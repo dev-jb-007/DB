@@ -74,7 +74,7 @@ let selectedAc=new Array;
  getLeaderBoard();
 async function getLeaderBoard(){
   let buffer=await fetch('/user/getLeaderBoard');
-  let div=document.getElementById('leaderboard');
+  let div=document.querySelector('.leaderboard');
   let ans=await buffer.json();
   let leaderboard=ans.set.leaderboard;
   let userid=ans.user;
