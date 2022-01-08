@@ -130,13 +130,17 @@ router.route("/dashboard/sendMail").post(isAuth, async (req, res, next) => {
     let ac = user.activities;
     for (let i = 0; i < ac.length; i++) {
       if (ac[i].activity.toString() === req.body.id) {
+        console.log('1');
+        console.log(ac[i]);
         ac[i].remainderTime = req.body.time;
         let string = "*/"+req.body.time+ " * * * * *";
         let x = await Activity.findById(ac[i].activity.toString(), "name");
         let jobName = "remainder" + ac[i].activity.toString();
         string = "*/" + req.body.time + " * * * * *";
         schedule.scheduleJob(jobName, string, () => {
-          sendMail(req.user.email,x.name).catch(console.error);
+          let mess=`Your Progress for ${x.name} is ${ac[i].progress}%`;
+          console.log(mess);
+          sendMail(req.user.email,mess).catch(console.error);
         });
         break;
       }
